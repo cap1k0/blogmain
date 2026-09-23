@@ -35,21 +35,33 @@ export default function Home() {
         </nav>
 
         {/* Hero */}
-        <section className="mb-16 max-w-2xl">
+        <section className="mb-14 max-w-2xl">
           <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-cyan-400/20 bg-cyan-400/5 px-3 py-1 font-mono-tech text-xs text-cyan-300">
             <span className="status-dot h-1.5 w-1.5 rounded-full bg-cyan-400" />
             system online
           </div>
 
           <h1 className="gradient-text mb-4 text-4xl font-semibold leading-tight sm:text-5xl">
-            Building at the intersection of AI and blockchain
+            AI is rewriting how work gets done. RAG is how you stay ahead of it.
           </h1>
 
+          <p className="mb-5 text-base leading-relaxed text-neutral-400">
+            <span className="text-neutral-200">Retrieval-Augmented Generation (RAG)</span>{" "}
+            is what lets an AI system pull in real, current knowledge before it
+            answers — instead of relying only on what a model memorized once.
+            It&apos;s the difference between an AI that guesses and one that
+            actually knows. RAG is the core of everything we build at Bruca:
+            agents, models, and datasets that stay grounded in real information
+            instead of drifting from it.
+          </p>
+
           <p className="mb-8 text-base leading-relaxed text-neutral-400">
-            Bruca is where AI and blockchain meet. We are exploring new
-            systems, models, and datasets at the intersection of these
-            technologies, together with a diverse community of people building
-            what comes next.
+            As AI takes over more of the work, the advantage shifts to whoever
+            can direct it — not just use it. Every advance in AI means the job
+            you have today needs an upgrade to stay relevant. That&apos;s what
+            we&apos;re building toward: putting RAG in your hands so you move
+            from keeping up with AI to leading with it — in your work, your
+            skills, and your own personal economy.
           </p>
 
           <div className="flex flex-wrap gap-3">
@@ -59,36 +71,56 @@ export default function Home() {
             >
               Join us →
             </a>
-          </div>
-        </section>
-
-        {/* Community */}
-        <section className="cyber-card mb-16 rounded-xl p-6">
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <span className="mb-2 inline-block rounded-md border border-[#ff2bd6]/30 bg-[rgba(255,43,214,0.08)] px-3 py-1 font-mono-tech text-xs text-[#ff2bd6]">
-                community
-              </span>
-
-              <h2 className="mb-1 text-lg font-medium text-white">
-                A community for AI and language material
-              </h2>
-
-              <p className="max-w-xl text-sm leading-relaxed text-neutral-400">
-                Bruca is also a home for people building AI systems and
-                open material for languages and academic writing — research
-                notes, datasets, and models, published on the blog.
-              </p>
-            </div>
-
             <a
               href="https://blog.bruca.space"
-              className="btn-outline-neon shrink-0 rounded-md px-5 py-2.5 text-center font-medium"
+              className="btn-outline-neon rounded-md px-5 py-2.5 font-medium"
             >
-              Visit the blog →
+              Read the research →
             </a>
           </div>
         </section>
+
+        {/* What we do here */}
+        <section className="cyber-card mb-8 rounded-xl p-6">
+          <span className="mb-2 inline-block rounded-md border border-[#ff2bd6]/30 bg-[rgba(255,43,214,0.08)] px-3 py-1 font-mono-tech text-xs text-[#ff2bd6]">
+            what we do here
+          </span>
+
+          <h2 className="mb-2 text-lg font-medium text-white">
+            A lab for RAG, AI agents, and open material
+          </h2>
+
+          <p className="max-w-2xl text-sm leading-relaxed text-neutral-400">
+            Bruca is where we build and ship RAG-powered AI — starting with an
+            editing agent connected to our own model, plus the datasets and
+            research behind it. We publish everything we learn along the way:
+            how RAG actually works, what we&apos;re building, and how people
+            are using AI to upgrade their own work and economy.
+          </p>
+        </section>
+
+        {/* Blog portal — one-click entry point */}
+        <a
+          href="https://blog.bruca.space"
+          className="portal-card group mb-16 flex items-center justify-between rounded-xl p-6"
+        >
+          <div>
+            <p className="mb-1 font-mono-tech text-xs uppercase tracking-widest text-cyan-300">
+              research notes
+            </p>
+            <h2 className="text-lg font-medium text-white">
+              Enter the blog
+            </h2>
+            <p className="mt-1 max-w-md text-sm text-neutral-400">
+              Everything on RAG, AI, and what we&apos;re building — written up
+              as we go, at blog.bruca.space.
+            </p>
+          </div>
+
+          <span className="gradient-text ml-4 shrink-0 text-3xl transition-transform group-hover:translate-x-1">
+            →
+          </span>
+        </a>
 
         {/* Model development space */}
         <section id="research" className="cyber-card mb-16 rounded-xl p-6">
