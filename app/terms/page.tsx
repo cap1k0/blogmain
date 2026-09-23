@@ -2,23 +2,27 @@ import Link from "next/link";
 
 export default function TermsPage() {
   return (
-    <main className="min-h-screen bg-white text-neutral-900">
+    <main className="min-h-screen bg-[#05060a] text-[#e6f1ff]">
       <div className="mx-auto max-w-3xl px-6 py-12">
-        <Link href="/" className="mb-8 inline-block text-sm text-neutral-500 hover:text-neutral-800">
+        <Link
+          href="/"
+          className="mb-8 inline-block font-mono-tech text-xs uppercase tracking-widest text-neutral-400 transition-colors hover:text-cyan-300"
+        >
           ← Back to Bruca
         </Link>
 
-        <h1 className="mb-2 text-3xl font-medium">Terms of service</h1>
-        <p className="mb-10 text-sm text-neutral-500">Last updated: </p>
+        <h1 className="gradient-text mb-2 text-3xl font-semibold">Terms of service</h1>
+        <p className="mb-10 font-mono-tech text-xs text-neutral-500">Last updated: </p>
 
-        <div className="space-y-8 text-sm leading-relaxed text-neutral-700">
+        <div className="space-y-8 text-sm leading-relaxed text-neutral-400">
           <p>
             Welcome to Bruca. These terms of service (&quot;terms&quot;) govern your
             access to and use of Bruca&apos;s website, applications, and
-            AI-powered text-editing services (together, the &quot;service&quot;),
-            operated by [Bruca legal entity name] (&quot;Bruca&quot;, &quot;we&quot;,
-            &quot;us&quot;, &quot;our&quot;). By creating an account or otherwise using
-            the service, you agree to these terms.
+            RAG-powered AI services — including our text-editing agent
+            (together, the &quot;service&quot;), operated by [Bruca legal entity
+            name] (&quot;Bruca&quot;, &quot;we&quot;, &quot;us&quot;, &quot;our&quot;). By creating
+            an account or otherwise using the service, you agree to these
+            terms.
           </p>
 
           <Section title="1. Eligibility">
@@ -33,10 +37,13 @@ export default function TermsPage() {
 
           <Section title="2. The service">
             <p className="mb-3">
-              Bruca provides an AI agent that suggests edits to text
-              submitted by users, including scholarly and research writing,
-              along with related account and workspace tools. The service is
-              currently offered as a <strong className="font-medium">beta</strong>:
+              Bruca provides Retrieval-Augmented Generation (RAG) AI systems,
+              starting with an agent that suggests edits to text submitted by
+              users — including scholarly and research writing — grounded in
+              retrieved, up-to-date information rather than a model&apos;s
+              static training data alone, along with related account and
+              workspace tools. The service is currently offered as a{" "}
+              <strong className="font-medium text-neutral-200">beta</strong>:
               features, availability, output quality, and pricing may change
               at any time, and the service may be interrupted or discontinued
               without notice.
@@ -72,18 +79,18 @@ export default function TermsPage() {
           <Section title="5. Your content">
             <ul className="list-disc space-y-1 pl-5">
               <li>
-                <strong className="font-medium">Ownership.</strong> You
+                <strong className="font-medium text-neutral-200">Ownership.</strong> You
                 retain all rights to the text, documents, and other
                 materials you submit to the service (&quot;your content&quot;).
               </li>
               <li>
-                <strong className="font-medium">License to us.</strong> You
+                <strong className="font-medium text-neutral-200">License to us.</strong> You
                 grant Bruca a limited, worldwide, non-exclusive license to
                 process, store, and transmit your content solely to
                 provide, maintain, and improve the service to you.
               </li>
               <li>
-                <strong className="font-medium">Model training.</strong>{" "}
+                <strong className="font-medium text-neutral-200">Model training.</strong>{" "}
                 [Choose one before publishing: &quot;We do not use your
                 content to train models without your explicit opt-in.&quot; or
                 &quot;We may use de-identified content to improve our models
@@ -102,7 +109,7 @@ export default function TermsPage() {
             <ul className="list-disc space-y-1 pl-5">
               <li>Use the service for any unlawful purpose or to violate academic integrity policies you are subject to</li>
               <li>Submit content that infringes intellectual property or privacy rights of others</li>
-              <li>Attempt to reverse-engineer, extract, scrape, or replicate the underlying models or infrastructure</li>
+              <li>Attempt to reverse-engineer, extract, scrape, or replicate the underlying models, retrieval systems, or infrastructure</li>
               <li>Use automated means to access the service beyond documented API usage</li>
               <li>Interfere with, overload, or disrupt the service or its security features</li>
             </ul>
@@ -110,11 +117,11 @@ export default function TermsPage() {
 
           <Section title="7. Intellectual property">
             <p>
-              The Bruca name, logo, software, models, and all related
-              technology are the property of [Bruca legal entity name] or
-              its licensors. These terms do not grant you any rights to our
-              trademarks or proprietary technology beyond what is necessary
-              to use the service as intended.
+              The Bruca name, logo, software, models, retrieval systems, and
+              all related technology are the property of [Bruca legal entity
+              name] or its licensors. These terms do not grant you any
+              rights to our trademarks or proprietary technology beyond what
+              is necessary to use the service as intended.
             </p>
           </Section>
 
@@ -179,11 +186,6 @@ export default function TermsPage() {
           <Section title="14. Contact">
             <p>Questions about these terms can be sent to [contact email].</p>
           </Section>
-
-          <p className="border-t border-neutral-200 pt-6 text-xs text-neutral-400">
-           Harwey! general template 
-            
-          </p>
         </div>
       </div>
     </main>
@@ -199,7 +201,7 @@ function Section({
 }) {
   return (
     <section>
-      <h2 className="mb-2 text-base font-medium text-neutral-900">{title}</h2>
+      <h2 className="mb-2 text-base font-medium text-neutral-100">{title}</h2>
       {children}
     </section>
   );
