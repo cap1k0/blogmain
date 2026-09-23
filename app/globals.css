@@ -103,6 +103,24 @@ body::before {
   color: var(--cyan);
 }
 
+/* one-click entry portal (blog CTA) */
+.portal-card {
+  position: relative;
+  border: 1px solid rgba(0, 240, 255, 0.25);
+  background: linear-gradient(
+    135deg,
+    rgba(0, 240, 255, 0.07),
+    rgba(255, 43, 214, 0.07)
+  );
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.2s ease;
+}
+
+.portal-card:hover {
+  border-color: rgba(0, 240, 255, 0.6);
+  box-shadow: 0 0 40px rgba(0, 240, 255, 0.2), 0 0 60px rgba(255, 43, 214, 0.12);
+  transform: translateY(-2px);
+}
+
 /* blinking terminal cursor */
 .cursor-blink::after {
   content: "_";
