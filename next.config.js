@@ -1,14 +1,13 @@
-const { composePlugins, withNx } = require('@nx/next');
-
-/**
- * @type {import('@nx/next/plugins/with-nx').WithNxOptions}
- **/
+/** @type {import('next').NextConfig} */
 const nextConfig = {
-  nx: {
-    svgr: false,
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "*.public.blob.vercel-storage.com",
+      },
+    ],
   },
 };
 
-const plugins = [withNx];
-
-module.exports = composePlugins(...plugins)(nextConfig);
+module.exports = nextConfig;
