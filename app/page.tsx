@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 
 const pages = [
   {
@@ -81,12 +80,12 @@ export default function Home() {
           <p className="mt-3 text-neutral-600">
             Now let's read the real stuff.
           </p>
-          <Link
-            href="/blog"
+          <a
+            href="https://blog.bruca.space"
             className="mt-8 rounded-full bg-black px-6 py-3 text-white transition hover:opacity-80"
           >
             Continue to the blog →
-          </Link>
+          </a>
         </div>
       </div>
 
