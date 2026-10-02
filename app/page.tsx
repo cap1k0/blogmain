@@ -1,121 +1,70 @@
-"use client";
+import Link from "next/link";
+import Logo from "./components/Logo";
+import BrainMap from "./components/BrainMap";
 
-import { useState } from "react";
+const BLOG = "https://blog.bruca.space";
 
-const pages = [
-  {
-    tag: "Issue 01",
-    title: "The New Generation Blog",
-    text: "Turn the page to start.",
-    cover: true,
-  },
-  {
-    tag: "Technology",
-    title: "Tech, made simple",
-    text: "New tools, new ideas, and how they work.",
-  },
-  {
-    tag: "Research",
-    title: "Research, made readable",
-    text: "We read the papers so you don't have to.",
-  },
+const steps = [
+  { n: "01", t: "Look", d: "Start with the original. Eighteen regions, one living network, mapped on a single page." },
+  { n: "02", t: "Play", d: "Fire signals through the circuit and run tiny experiments on your own mind." },
+  { n: "03", t: "Read", d: "Follow the thread into AI: agents, RAG and the models that borrow from the brain." },
 ];
 
 export default function Home() {
-  const [current, setCurrent] = useState(0);
-  const total = pages.length + 1; // + last page with the link
-
-  const next = () => setCurrent((c) => Math.min(c + 1, total - 1));
-  const prev = () => setCurrent((c) => Math.max(c - 1, 0));
-
   return (
-    <main className="min-h-screen flex flex-col items-center justify-center gap-8 bg-neutral-200 px-6">
-      <div
-        className="relative h-[440px] w-[320px] sm:h-[500px] sm:w-[360px]"
-        style={{ perspective: "1800px" }}
-      >
-        {/* Turning pages */}
-        {pages.map((p, i) => {
-          const flipped = i < current;
-          return (
-            <div
-              key={p.title}
-              onClick={next}
-              className={`absolute inset-0 flex cursor-pointer flex-col justify-between rounded-r-2xl rounded-l-sm border-l-8 border-neutral-800 p-8 shadow-2xl ${
-                p.cover ? "bg-neutral-900 text-white" : "bg-[#faf7f0] text-neutral-900"
-              }`}
-              style={{
-                zIndex: total - i,
-                transformOrigin: "left center",
-                transform: flipped ? "rotateY(-150deg)" : "rotateY(0deg)",
-                opacity: flipped ? 0 : 1,
-                pointerEvents: flipped ? "none" : "auto",
-                transition: flipped
-                  ? "transform .8s ease-in-out, opacity .3s ease .5s"
-                  : "transform .8s ease-in-out, opacity .1s",
-              }}
-            >
-              <span className="text-xs uppercase tracking-[0.3em] opacity-60">
-                {p.tag}
-              </span>
-              <div>
-                <h1 className="text-3xl font-bold leading-tight sm:text-4xl">
-                  {p.title}
-                </h1>
-                <p className="mt-4 opacity-70">{p.text}</p>
-              </div>
-              <span className="text-sm opacity-50">
-                {i + 1} / {total} · click to turn →
-              </span>
-            </div>
-          );
-        })}
+    <main className="relative z-10 min-h-screen pb-16">
+      <header className="mx-auto flex max-w-6xl items-center justify-between px-6 py-6">
+        <Logo />
+        <nav className="flex items-center gap-5 text-sm text-slate-300">
+          <Link href="/docs" className="hover:text-white">Docs</Link>
+          <a href={BLOG} className="btn-outline-neon rounded-full px-4 py-1.5">Blog →</a>
+        </nav>
+      </header>
 
-        {/* Last page */}
-        <div
-          className="absolute inset-0 flex flex-col items-center justify-center rounded-r-2xl rounded-l-sm border-l-8 border-neutral-800 bg-[#faf7f0] p-8 text-center shadow-2xl"
-          style={{ zIndex: 1 }}
-        >
-          <h2 className="text-3xl font-bold">Ready?</h2>
-          <p className="mt-3 text-neutral-600">
-            Now let's read the real stuff.
-          </p>
-          <a
-            href="https://blog.bruca.space"
-            className="mt-8 rounded-full bg-black px-6 py-3 text-white transition hover:opacity-80"
-          >
-            Continue to the blog →
-          </a>
+      <div className="mx-auto max-w-6xl px-6 pb-10 pt-6">
+        <div className="font-mono-tech flex items-center gap-2 text-xs uppercase tracking-[0.3em] text-cyan-300">
+          <span className="status-dot h-2 w-2 rounded-full bg-cyan-300" />
+          Bruca · a reading lab for minds
         </div>
+        <h1 className="gradient-text mt-4 text-4xl font-bold leading-tight sm:text-6xl">
+          Study intelligence.
+          <br />
+          Then play with it.
+        </h1>
+        <p className="mt-4 max-w-xl text-slate-400">
+          Intelligence started as a network of cells. Poke the one below, then read how we are rebuilding it.
+        </p>
       </div>
 
-      {/* Controls */}
-      <div className="flex items-center gap-4">
-        <button
-          onClick={prev}
-          disabled={current === 0}
-          className="rounded-full border border-neutral-400 px-4 py-2 text-sm disabled:opacity-30"
-        >
-          ← Back
-        </button>
-        <div className="flex gap-2">
-          {Array.from({ length: total }).map((_, i) => (
-            <span
-              key={i}
-              className={`h-2 w-2 rounded-full ${
-                i === current ? "bg-neutral-900" : "bg-neutral-400"
-              }`}
-            />
-          ))}
-        </div>
-        <button
-          onClick={next}
-          disabled={current === total - 1}
-          className="rounded-full border border-neutral-400 px-4 py-2 text-sm disabled:opacity-30"
-        >
-          Next →
-        </button>
-      </div>
+      <BrainMap />
+
+      <section className="mx-auto mt-16 grid max-w-6xl gap-4 px-6 sm:grid-cols-3">
+        {steps.map((s) => (
+          <div key={s.n} className="cyber-card rounded-2xl p-6">
+            <span className="font-mono-tech text-xs text-fuchsia-300">{s.n}</span>
+            <h3 className="mt-2 text-xl font-semibold text-white">{s.t}</h3>
+            <p className="mt-2 text-sm leading-relaxed text-slate-400">{s.d}</p>
+          </div>
+        ))}
+      </section>
+
+      <section className="mx-auto mt-10 max-w-6xl px-6">
+        <a href={BLOG} className="portal-card flex flex-col items-start justify-between gap-4 rounded-2xl p-8 sm:flex-row sm:items-center">
+          <div>
+            <h2 className="text-2xl font-semibold text-white">Ready to read?</h2>
+            <p className="mt-1 text-slate-400">AI news, RAG and agent research, written as the field moves.</p>
+          </div>
+          <span className="btn-neon rounded-full px-6 py-3 font-medium">Continue to the blog →</span>
+        </a>
+      </section>
+
+      <footer className="mx-auto mt-12 flex max-w-6xl justify-between px-6 text-xs text-slate-500">
+        <span>© Bruca</span>
+        <span className="flex gap-4">
+          <Link href="/docs" className="hover:text-slate-300">Docs</Link>
+          <Link href="/terms" className="hover:text-slate-300">Terms</Link>
+        </span>
+      </footer>
     </main>
   );
 }
