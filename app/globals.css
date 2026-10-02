@@ -1,8 +1,8 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap");
 
 :root {
   --bg: #05060a;
@@ -151,3 +151,10 @@ body::before {
     box-shadow: 0 0 0 0 rgba(0, 240, 255, 0);
   }
 }
+
+/* brain network: signal cascade */
+@keyframes nodeFire { 35% { transform: scale(2.8); fill: #fff; fill-opacity: 1; } }
+@keyframes edgeFire { 35% { stroke: #fff; stroke-opacity: 1; stroke-width: 2; } }
+.n-fire { transform-box: fill-box; transform-origin: center; animation: nodeFire 0.9s ease-out both; }
+.e-fire { animation: edgeFire 0.9s ease-out both; }
+@media (prefers-reduced-motion: reduce) { .n-fire, .e-fire { animation: none; } }
