@@ -4,10 +4,15 @@ import BrainMap from "./components/BrainMap";
 
 const BLOG = "https://blog.bruca.space";
 
-const steps = [
-  { n: "01", t: "Look", d: "Start with the original. Eighteen regions, one living network, mapped on a single page." },
-  { n: "02", t: "Play", d: "Fire signals through the circuit and run tiny experiments on your own mind." },
-  { n: "03", t: "Read", d: "Follow the thread into AI: agents, RAG and the models that borrow from the brain." },
+const points = [
+  {
+    t: "Our team",
+    d: "A diverse team of writers working on the creativity and core of the product.",
+  },
+  {
+    t: "Our algorithm",
+    d: "A proprietary algorithm that detects and reduces bias in text.",
+  },
 ];
 
 export default function Home() {
@@ -21,41 +26,41 @@ export default function Home() {
         </nav>
       </header>
 
-      <div className="mx-auto max-w-6xl px-6 pb-10 pt-6">
+      <div className="mx-auto max-w-6xl px-6 pb-10 pt-16">
         <div className="font-mono-tech flex items-center gap-2 text-xs uppercase tracking-[0.3em] text-cyan-300">
           <span className="status-dot h-2 w-2 rounded-full bg-cyan-300" />
-          Bruca · a reading lab for minds
+          Bruca
         </div>
         <h1 className="gradient-text mt-4 text-4xl font-bold leading-tight sm:text-6xl">
-          Study intelligence.
+          Diverse writers.
           <br />
-          Then play with it.
+          Less biased text.
         </h1>
         <p className="mt-4 max-w-xl text-slate-400">
-          Intelligence started as a network of cells. Poke the one below, then read how we are rebuilding it.
+          Our startup is a team of diverse writers focused on the creativity and core of the product.
+          We also have a proprietary algorithm that detects and reduces bias in text.
         </p>
       </div>
 
       <BrainMap />
 
-      <section className="mx-auto mt-16 grid max-w-6xl gap-4 px-6 sm:grid-cols-3">
-        {steps.map((s) => (
-          <div key={s.n} className="cyber-card rounded-2xl p-6">
-            <span className="font-mono-tech text-xs text-fuchsia-300">{s.n}</span>
-            <h3 className="mt-2 text-xl font-semibold text-white">{s.t}</h3>
-            <p className="mt-2 text-sm leading-relaxed text-slate-400">{s.d}</p>
+      <section className="mx-auto mt-16 grid max-w-6xl gap-4 px-6 sm:grid-cols-2">
+        {points.map((p) => (
+          <div key={p.t} className="cyber-card rounded-2xl p-6">
+            <h3 className="text-xl font-semibold text-white">{p.t}</h3>
+            <p className="mt-2 text-sm leading-relaxed text-slate-400">{p.d}</p>
           </div>
         ))}
       </section>
 
       <section className="mx-auto mt-10 max-w-6xl px-6">
-        <a href={BLOG} className="portal-card flex flex-col items-start justify-between gap-4 rounded-2xl p-8 sm:flex-row sm:items-center">
+        <Link href="/docs" className="portal-card flex flex-col items-start justify-between gap-4 rounded-2xl p-8 sm:flex-row sm:items-center">
           <div>
-            <h2 className="text-2xl font-semibold text-white">Ready to read?</h2>
-            <p className="mt-1 text-slate-400">AI news, RAG and agent research, written as the field moves.</p>
+            <h2 className="text-2xl font-semibold text-white">Want to use our algorithm?</h2>
+            <p className="mt-1 text-slate-400">If you are interested, we would be glad to share demo with you.</p>
           </div>
-          <span className="btn-neon rounded-full px-6 py-3 font-medium">Continue to the blog →</span>
-        </a>
+          <span className="btn-neon rounded-full px-6 py-3 font-medium">Learn more →</span>
+        </Link>
       </section>
 
       <footer className="mx-auto mt-12 flex max-w-6xl justify-between px-6 text-xs text-slate-500">
