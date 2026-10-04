@@ -29,7 +29,7 @@ export default function Home() {
         <h1 className="gradient-text mt-4 text-4xl font-bold leading-tight sm:text-6xl">
           Diverse writers.
           <br />
-          Less biased text.
+          Less biased product.
         </h1>
         <p className="mt-4 max-w-xl text-slate-400">
           Our startup is a team of diverse writers focused on the creativity and core of the product.
