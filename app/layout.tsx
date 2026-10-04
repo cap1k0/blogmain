@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Bruca Blog — AI News, RAG & Agent Research",
+    title: "Bruca Blog Brain Agent Research",
     description,
   },
   robots: { index: true, follow: true },
@@ -53,7 +53,7 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Blog",
-              name: "Bruca Blog",
+              name: "Bruca Agent",
               url: baseUrl,
               description,
             }),
