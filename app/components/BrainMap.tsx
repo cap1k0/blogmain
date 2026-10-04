@@ -9,7 +9,6 @@ type Region = {
   color: string;
   tag: string;
   text: string;
-  play: string;
   parent?: string;
   b: [number, number, number, number, number, number?]; // node blob: cx, cy, rx, ry, count, rot
   poly?: string;
@@ -28,75 +27,75 @@ const R: Region[] = [
   { id: "cerebellum", name: "Cerebellum", group: "Back", color: "#34d399", ell: [612, 418, 92, 48, 8], b: [612, 420, 70, 26, 8, 8],
     tag: "Balance, coordination, timing",
     text: "The “little brain” at the back holds most of the brain's neurons in a fraction of its volume. It fine-tunes movement and learns skills until they become smooth.",
-    play: "Stand on one foot and close your eyes. The wobble-and-correct loop you feel is your cerebellum working." },
+  },
   { id: "stem", name: "Brainstem", group: "Back", color: "#60a5fa", d: "M 452 382 C 450 430, 468 470, 478 508 L 526 508 C 522 468, 520 430, 540 384 Z", b: [496, 446, 16, 52, 6],
     tag: "Keeps you alive",
     text: "Midbrain, pons and medulla. It runs breathing, heart rate and the sleep-wake cycle, and routes every signal travelling between brain and body.",
-    play: "Take one slow breath. It normally runs on autopilot here; you just borrowed control for a moment." },
+  },
   { id: "frontal", name: "Frontal lobe", group: "Cortex", color: "#00f0ff", poly: "60,40 448,40 430,282 330,312 235,350 60,420", b: [240, 215, 90, 80, 16],
     tag: "Planning, decisions, movement, speech",
     text: "The largest lobe turns goals into action: planning ahead, choosing, sustaining attention, and commanding movement and speech.",
-    play: "Plan your next five minutes, then actually do it. That loop is the frontal lobe running the show." },
+  },
   { id: "parietal", name: "Parietal lobe", group: "Cortex", color: "#8b5cf6", poly: "448,40 625,40 600,262 525,268 430,282", b: [535, 170, 75, 62, 12],
     tag: "Space, attention, combining the senses",
     text: "Merges touch, vision and balance into one sense of where your body is and what surrounds it. It also supports number sense and map reading.",
-    play: "Close your eyes and touch your nose. Your parietal lobe knows where your hand is without looking." },
+  },
   { id: "temporal", name: "Temporal lobe", group: "Cortex", color: "#ff2bd6", poly: "200,355 235,350 330,312 430,282 525,268 565,385 570,440 200,440", b: [400, 352, 95, 26, 11],
     tag: "Hearing, language, memory",
     text: "Sits above the ears. It processes sound, recognizes faces and objects, and works with the hippocampus to store new memories.",
-    play: "Hum a song you know. Recalling its tune recruits the temporal lobe." },
+  },
   { id: "occipital", name: "Occipital lobe", group: "Cortex", color: "#fbbf24", poly: "625,40 760,40 760,440 570,440 565,385 525,268 600,262", b: [655, 270, 50, 70, 12],
     tag: "Vision",
     text: "At the back of the head. It decodes edges, color and motion from the eyes; vision claims a surprisingly large share of the whole cortex.",
-    play: "Rub your closed eyes gently. The patterns you see are your visual cortex firing on its own." },
+  },
   { id: "prefrontal", name: "Prefrontal cortex", group: "Cortex", parent: "frontal", color: "#7df9ff", ell: [160, 238, 42, 62, 0], b: [160, 238, 36, 56, 7],
     tag: "Judgment, focus, self-control",
     text: "The front edge of the frontal lobe weighs options, holds information in working memory and brakes impulses. It matures last, into the mid-twenties.",
-    play: "Hold a phone number in your head while counting back from 20 by threes. That strain is working memory." },
+  },
   { id: "motor", name: "Motor cortex", group: "Cortex", parent: "frontal", color: "#38bdf8", ell: [425, 150, 11, 66, 4], b: [425, 150, 10, 62, 6, 4],
     tag: "Sends voluntary movement commands",
     text: "A strip just in front of the central sulcus. Each patch drives a body part, and hands and face get a disproportionately big share.",
-    play: "Wiggle one finger at a time. Every tiny command starts here." },
+  },
   { id: "sensory", name: "Somatosensory cortex", group: "Cortex", parent: "parietal", color: "#818cf8", ell: [455, 150, 11, 66, 4], b: [455, 150, 10, 62, 6, 4],
     tag: "Touch, pressure, temperature, pain",
     text: "The strip just behind the central sulcus maps your body surface. Lips and fingertips take far more space than your back.",
-    play: "Touch your lip, then your forearm. The lip feels sharper because more cortex is listening." },
+  },
   { id: "broca", name: "Broca's area", group: "Cortex", parent: "frontal", color: "#22d3ee", ell: [290, 290, 20, 17, 0], b: [290, 290, 14, 12, 4],
     tag: "Producing speech",
     text: "Usually in the left frontal lobe. It strings words into fluent sentences and coordinates the muscles of speech.",
-    play: "Say “red lorry, yellow lorry” five times fast. Broca's area is juggling the sounds." },
+  },
   { id: "wernicke", name: "Wernicke's area", group: "Cortex", parent: "temporal", color: "#f0abfc", ell: [500, 300, 20, 17, 0], b: [500, 300, 14, 12, 4],
     tag: "Understanding language",
     text: "Usually in the left temporal-parietal region. It links sounds and written symbols to meaning, so words become ideas.",
-    play: "You just read this sentence silently and still understood it. That link is this area's job." },
+  },
   { id: "cc", name: "Corpus callosum", group: "Deep", color: "#e2e8f0", d: "M 255 218 C 320 170, 520 168, 595 222", sw: 10, b: [425, 184, 110, 9, 7],
     tag: "Bridge between the hemispheres",
     text: "A thick band of roughly 200 million nerve fibers that lets the left and right hemispheres share information.",
-    play: "Tap a different rhythm with each hand. The two sides must talk across this bridge." },
+  },
   { id: "bg", name: "Basal ganglia", group: "Deep", color: "#fb7185", ell: [368, 252, 28, 26, 0], b: [368, 252, 22, 20, 5],
     tag: "Habits, action selection, reward",
     text: "A cluster of nuclei that selects actions, smooths movement and learns from reward. Dopamine signalling here is central to Parkinson's disease.",
-    play: "Tie your shoes without thinking. A habit stored here runs automatically." },
+  },
   { id: "thalamus", name: "Thalamus", group: "Deep", color: "#f472b6", ell: [440, 262, 32, 22, 0], b: [440, 262, 24, 15, 5],
     tag: "Relay station for the senses",
     text: "Almost every sensory signal, except smell, stops here before reaching the cortex. It also helps regulate sleep and alertness.",
-    play: "Notice your socks on your feet. Until now the thalamus was filtering that out." },
+  },
   { id: "hypo", name: "Hypothalamus", group: "Deep", color: "#fb923c", ell: [425, 312, 18, 12, 0], b: [425, 312, 12, 7, 3],
     tag: "The body's control panel",
     text: "Small but vital: it regulates temperature, hunger, thirst, sleep cycles and hormones through the pituitary.",
-    play: "Feel your stomach rumble? The hypothalamus is reading your body's hunger signals." },
+  },
   { id: "pit", name: "Pituitary gland", group: "Deep", color: "#fde047", ell: [404, 341, 9, 9, 0], b: [404, 341, 3, 3, 1],
     tag: "Master hormone gland",
     text: "A pea-sized gland hanging from the hypothalamus. It releases hormones that steer growth, stress response, metabolism and reproduction.",
-    play: "Ever outgrown your jeans? Growth hormone from the pituitary did that." },
+  },
   { id: "amyg", name: "Amygdala", group: "Deep", color: "#ef4444", ell: [333, 350, 16, 13, 0], b: [333, 350, 10, 8, 3],
     tag: "Emotion and threat detection",
     text: "An almond-shaped pair of clusters that tags experiences with emotional importance, especially fear, and triggers fast reactions.",
-    play: "Picture a sudden loud bang. Your heart jumps before you know why: amygdala first, thought second." },
+  },
   { id: "hippo", name: "Hippocampus", group: "Deep", color: "#a3e635", d: "M 345 360 C 395 378, 470 370, 505 325", sw: 12, b: [425, 364, 70, 8, 5, -20],
     tag: "Forms new memories",
     text: "Seahorse-shaped. It turns experiences into lasting memories and builds mental maps of places.",
-    play: "Recall what you had for breakfast. The hippocampus is replaying that moment." },
+  },
 ];
 
 const BRIDGES: [string, string][] = [
@@ -317,10 +316,6 @@ export default function BrainMap() {
             <h2 className="mt-2 text-2xl font-semibold text-white">{cur.name}</h2>
             <p className="mt-1 text-cyan-200/80">{cur.tag}</p>
             <p className="mt-4 text-sm leading-relaxed text-slate-300">{cur.text}</p>
-            <div className="mt-5 rounded-xl border border-white/10 bg-white/5 p-4 text-sm">
-              <span className="font-mono-tech text-xs uppercase tracking-widest text-fuchsia-300">Try it</span>
-              <p className="mt-1 text-slate-200">{cur.play}</p>
-            </div>
           </>
         ) : (
           <>
@@ -328,8 +323,7 @@ export default function BrainMap() {
             <h2 className="mt-2 text-2xl font-semibold text-white">Tap a region.</h2>
             <p className="mt-1 text-cyan-200/80">A brain, drawn as the network it is.</p>
             <p className="mt-4 text-sm leading-relaxed text-slate-300">
-              About 86 billion neurons, drawn here as a few hundred. Click any region to light its circuit, read what it does,
-              then try the tiny experiment on yourself.
+              About 86 billion neurons, drawn here as a few hundred. Click any region to light its circuit and read what it does.
             </p>
           </>
         )}
