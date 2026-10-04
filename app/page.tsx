@@ -4,15 +4,10 @@ import BrainMap from "./components/BrainMap";
 
 const BLOG = "https://blog.bruca.space";
 
-const points = [
-  {
-    t: "Our team",
-    d: "A diverse team of writers working on the creativity and core of the product.",
-  },
-  {
-    t: "Our algorithm",
-    d: "A proprietary algorithm that detects and reduces bias in text.",
-  },
+const steps = [
+  { n: "01", t: "Read", d: "Read how our team of writers works and what our algorithm does." },
+  { n: "02", t: "Feel confident", d: "See the approach for yourself and trust the way we handle your text." },
+  { n: "03", t: "Use it", d: "After the demo, put the algorithm to work on your own texts." },
 ];
 
 export default function Home() {
@@ -44,23 +39,24 @@ export default function Home() {
 
       <BrainMap />
 
-      <section className="mx-auto mt-16 grid max-w-6xl gap-4 px-6 sm:grid-cols-2">
-        {points.map((p) => (
-          <div key={p.t} className="cyber-card rounded-2xl p-6">
-            <h3 className="text-xl font-semibold text-white">{p.t}</h3>
-            <p className="mt-2 text-sm leading-relaxed text-slate-400">{p.d}</p>
+      <section className="mx-auto mt-16 grid max-w-6xl gap-4 px-6 sm:grid-cols-3">
+        {steps.map((s) => (
+          <div key={s.n} className="cyber-card rounded-2xl p-6">
+            <span className="font-mono-tech text-xs text-fuchsia-300">{s.n}</span>
+            <h3 className="mt-2 text-xl font-semibold text-white">{s.t}</h3>
+            <p className="mt-2 text-sm leading-relaxed text-slate-400">{s.d}</p>
           </div>
         ))}
       </section>
 
       <section className="mx-auto mt-10 max-w-6xl px-6">
-        <Link href="/docs" className="portal-card flex flex-col items-start justify-between gap-4 rounded-2xl p-8 sm:flex-row sm:items-center">
+        <a href={BLOG} className="portal-card flex flex-col items-start justify-between gap-4 rounded-2xl p-8 sm:flex-row sm:items-center">
           <div>
-            <h2 className="text-2xl font-semibold text-white">Want to use our algorithm?</h2>
-            <p className="mt-1 text-slate-400">If you are interested, we would be glad to share demo with you.</p>
+            <h2 className="text-2xl font-semibold text-white">Ready to read?</h2>
+            <p className="mt-1 text-slate-400">Our platform is a startup and a team of writers.</p>
           </div>
-          <span className="btn-neon rounded-full px-6 py-3 font-medium">Learn more →</span>
-        </Link>
+          <span className="btn-neon rounded-full px-6 py-3 font-medium">Continue to the blog →</span>
+        </a>
       </section>
 
       <footer className="mx-auto mt-12 flex max-w-6xl justify-between px-6 text-xs text-slate-500">
