@@ -33,7 +33,7 @@ export default function Home() {
         </h1>
         <p className="mt-4 max-w-xl text-slate-400">
           Our startup is a team of diverse writers focused on the creativity and core of the product.
-          We also have a proprietary algorithm that detects and reduces bias in text.
+          We also have a proprietary algorithm that detects and reduces bias in text and products.
         </p>
       </div>
 
