@@ -3,14 +3,16 @@ import "./globals.css";
 
 const baseUrl = "https://bruca.space";
 
+const description =
+  "Our startup is a team of diverse writers who work on creativity and the core of the product. We have a special algorithm for detecting and reducing bias in text, and if you are interested, we can make it available to you.";
+
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: "Bruca Blog — AI News, RAG & Agent Research",
+    default: "Bruca Blog Brain Agent Research",
     template: "%s | Bruca Blog",
   },
-  description:
-    "AI news and research notes on RAG, AI agents, and the models behind them — written as the field moves, not after it.",
+  description,
   keywords: [
     "AI news",
     "RAG",
@@ -23,17 +25,15 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: baseUrl,
-    siteName: "Bruca Blog",
-    title: "Bruca Blog — AI News, RAG & Agent Research",
-    description:
-      "AI news and research notes on RAG, AI agents, and the models behind them.",
+    siteName: "Bruca Agent",
+    title: "Bruca Blog Brain Agent Research",
+    description,
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
     title: "Bruca Blog — AI News, RAG & Agent Research",
-    description:
-      "AI news and research notes on RAG, AI agents, and the models behind them.",
+    description,
   },
   robots: { index: true, follow: true },
 };
@@ -55,8 +55,7 @@ export default function RootLayout({
               "@type": "Blog",
               name: "Bruca Blog",
               url: baseUrl,
-              description:
-                "AI news and research notes on RAG, AI agents, and the models behind them.",
+              description,
             }),
           }}
         />
