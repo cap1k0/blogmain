@@ -1,4 +1,11 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Docs",
+  description: "Documentation for Bruca: how our bias-detection approach for text, products and stories is designed.",
+  alternates: { canonical: "/docs" },
+};
 
 type Article = {
   title: string;
@@ -16,10 +23,10 @@ const categories: Category[] = [
     name: "Getting started",
     articles: [
       {
-        title: "Bruca Api",
-        slug: "how-bruca-edits",
+        title: "How our bias detection is designed",
+        slug: "how-bias-detection-works",
         description:
-          "A research experiment comparing AI-generated edits with human linguistic corrections using NLP evaluation methods.",
+          "A plain-language overview of the planned algorithm, with diagrams and charts. In development.",
       },
     ],
   },
