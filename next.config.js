@@ -8,6 +8,15 @@ const nextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: "/docs/how-bruca-edits",
+        destination: "/docs/how-bias-detection-works",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;
