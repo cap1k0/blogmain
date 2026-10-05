@@ -24,7 +24,7 @@ export default function HowBiasDetectionWorks() {
         <p className="mb-6 text-base text-neutral-500">A short overview of the approach we are building</p>
 
         <div className="mb-10 rounded-lg border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900">
-          <strong className="font-medium">Status: in development.</strong> The algorithm is not built yet. This page describes the
+          <strong className="font-medium">Status: in development.</strong> This page describes the
           planned design. The numbers in the charts are placeholders that show what a report could look like. They are not
           measured results.
         </div>
