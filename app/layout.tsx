@@ -4,35 +4,36 @@ import "./globals.css";
 const baseUrl = "https://bruca.space";
 
 const description =
-  "Our startup is a team of diverse writers who work on creativity and the core of the product. We have a special algorithm for detecting and reducing bias in text, and if you are interested, we can make it available to you.";
+  "Bruca helps teams find and fix biased wording in text, product copy and brand stories. A team of diverse writers and a bias-detection algorithm in development, built with European audiences in mind.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: "Bruca Blog Brain Agent Research",
-    template: "%s | Bruca Blog",
+    default: "Bruca: bias detection for text and product stories",
+    template: "%s | Bruca",
   },
   description,
   keywords: [
-    "AI news",
-    "RAG",
-    "retrieval-augmented generation",
-    "AI agents",
-    "AI research blog",
-    "machine learning news",
+    "bias detection",
+    "inclusive language",
+    "inclusive writing",
+    "text bias analysis",
+    "product copy review",
+    "fair AI",
+    "European audiences",
   ],
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     url: baseUrl,
-    siteName: "Bruca Agent",
-    title: "Bruca Blog Brain Agent Research",
+    siteName: "Bruca",
+    title: "Bruca: bias detection for text and product stories",
     description,
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Bruca Blog Brain Agent Research",
+    title: "Bruca: bias detection for text and product stories",
     description,
   },
   robots: { index: true, follow: true },
@@ -52,8 +53,8 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "Blog",
-              name: "Bruca Agent",
+              "@type": "Organization",
+              name: "Bruca",
               url: baseUrl,
               description,
             }),
