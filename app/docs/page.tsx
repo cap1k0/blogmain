@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = { 
   title: "Docs",
   description: "Documentation for Bruca: how our bias-detection approach for text, products and stories is designed.",
   alternates: { canonical: "/docs" },
