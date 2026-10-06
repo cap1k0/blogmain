@@ -3,6 +3,7 @@ import Logo from "./components/Logo";
 import BiasLens from "./components/BiasLens";
 
 const BLOG = "https://blog.bruca.space";
+const DEMO = "https://demo.bruca.space";
 
 const solutions = [
   {
@@ -30,6 +31,7 @@ export default function Home() {
         <nav className="flex items-center gap-5 text-sm text-slate-300">
           <a href="#solutions" className="hover:text-white">Solutions</a>
           <Link href="/docs" className="hover:text-white">Docs</Link>
+          <a href={DEMO} className="hover:text-white">Demo</a>
           <a href={BLOG} className="btn-outline-neon rounded-full px-4 py-1.5">Blog →</a>
         </nav>
       </header>
@@ -93,6 +95,7 @@ export default function Home() {
         <span>© Bruca</span>
         <span className="flex gap-4">
           <Link href="/docs" className="hover:text-slate-300">Docs</Link>
+          <a href={DEMO} className="hover:text-slate-300">Demo</a>
           <Link href="/terms" className="hover:text-slate-300">Terms</Link>
         </span>
       </footer>
