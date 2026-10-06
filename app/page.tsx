@@ -1,6 +1,4 @@
-```tsx
 import Link from "next/link";
-import Logo from "./components/Logo";
 import BiasLens from "./components/BiasLens";
 
 const BLOG = "https://blog.bruca.space";
@@ -27,7 +25,6 @@ const solutions = [
 export default function Home() {
   return (
     <main className="relative min-h-screen overflow-hidden bg-[#05070d] pb-16 text-white">
-      {/* Ambient background */}
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute left-[8%] top-[-10%] h-[420px] w-[420px] rounded-full bg-cyan-500/10 blur-[120px]" />
         <div className="absolute right-[5%] top-[20%] h-[360px] w-[360px] rounded-full bg-fuchsia-500/10 blur-[120px]" />
@@ -42,7 +39,6 @@ export default function Home() {
         />
       </div>
 
-      {/* Header */}
       <header className="mx-auto flex max-w-6xl items-center justify-between px-6 py-6">
         <Link href="/" className="group">
           <div className="text-xl font-black tracking-[-0.08em] text-white transition group-hover:text-cyan-300">
@@ -72,7 +68,6 @@ export default function Home() {
         </nav>
       </header>
 
-      {/* Hero */}
       <section className="mx-auto max-w-6xl px-6 pb-14 pt-20">
         <div className="max-w-4xl">
           <div className="mb-5 flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.28em] text-cyan-300">
@@ -113,17 +108,16 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Bias Lens */}
       <section className="mx-auto max-w-6xl px-6">
         <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.025] p-1 shadow-2xl shadow-black/30">
           <div className="absolute inset-0 bg-gradient-to-br from-cyan-400/[0.06] via-transparent to-fuchsia-400/[0.06]" />
+
           <div className="relative rounded-[22px] border border-white/5 bg-[#080b12]/90">
             <BiasLens />
           </div>
         </div>
       </section>
 
-      {/* Solutions */}
       <section id="solutions" className="mx-auto mt-24 max-w-6xl px-6">
         <div className="font-mono text-[11px] uppercase tracking-[0.28em] text-fuchsia-300">
           Solutions
@@ -163,7 +157,6 @@ export default function Home() {
           ))}
         </div>
 
-        {/* Global audience */}
         <div className="mt-4 rounded-2xl border border-white/10 bg-gradient-to-r from-white/[0.035] to-transparent p-7">
           <div className="grid gap-6 md:grid-cols-[180px_1fr]">
             <div className="font-mono text-xs uppercase tracking-[0.2em] text-fuchsia-300">
@@ -187,7 +180,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Blog */}
       <section className="mx-auto mt-20 max-w-6xl px-6">
         <a
           href={BLOG}
@@ -218,7 +210,6 @@ export default function Home() {
         </a>
       </section>
 
-      {/* Footer */}
       <footer className="mx-auto mt-16 flex max-w-6xl justify-between px-6 text-xs text-slate-600">
         <span>© Bruca</span>
 
@@ -239,4 +230,3 @@ export default function Home() {
     </main>
   );
 }
-```
