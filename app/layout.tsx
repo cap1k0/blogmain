@@ -1,5 +1,6 @@
 // app/layout.tsx
 import type { Metadata } from "next";
+import Script from "next/script";
 import "./globals.css";
 
 const baseUrl = "https://bruca.space";
@@ -68,6 +69,20 @@ export default function RootLayout({
             }),
           }}
         />
+        <Script id="hilltopads-tag" strategy="afterInteractive">
+          {`
+            (function(aicmb){
+              var d = document,
+                  s = d.createElement('script'),
+                  l = d.currentScript || d.scripts[d.scripts.length - 1];
+              s.settings = aicmb || {};
+              s.src = "//untimely-hello.com/bEX.VCsFdIGElE0/YUWpcR/hefmH9eudZRUnlikQPmTCcM1yNqT/IZw_MyDikZt_NYzwUO1hMajWAlxmMmwE";
+              s.async = true;
+              s.referrerPolicy = 'no-referrer-when-downgrade';
+              (l && l.parentNode ? l.parentNode : d.body).insertBefore(s, l && l.parentNode ? l : null);
+            })({})
+          `}
+        </Script>
       </body>
     </html>
   );
