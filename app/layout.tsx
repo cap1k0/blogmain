@@ -1,3 +1,4 @@
+// app/layout.tsx
 import type { Metadata } from "next";
 import "./globals.css";
 
@@ -37,6 +38,13 @@ export const metadata: Metadata = {
     description,
   },
   robots: { index: true, follow: true },
+  verification: {
+    google: "TOKEN_GOOGLE",
+    yandex: "TOKEN_YANDEX",
+    other: {
+      "msvalidate.01": "TOKEN_BING",
+    },
+  },
 };
 
 export default function RootLayout({
