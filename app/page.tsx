@@ -160,4 +160,141 @@ function OldHome() {
 
               <h3 className="mt-8 text-xl font-semibold text-white">{s.t}</h3>
 
-              <p
+              <p className="mt-3 text-sm leading-6 text-slate-400">{s.d}</p>
+
+              <div className="mt-8 h-px w-8 bg-gradient-to-r from-cyan-300 to-transparent transition-all duration-300 group-hover:w-16" />
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-4 rounded-2xl border border-white/10 bg-gradient-to-r from-white/[0.035] to-transparent p-7">
+          <div className="grid gap-6 md:grid-cols-[180px_1fr]">
+            <div className="font-mono text-xs uppercase tracking-[0.2em] text-fuchsia-300">
+              Global audience
+            </div>
+
+            <div>
+              <h3 className="text-xl font-semibold text-white">
+                Inclusive by design, for audiences around the world.
+              </h3>
+
+              <p className="mt-3 max-w-3xl text-sm leading-6 text-slate-400">
+                Audiences differ by language, culture, identity, age, ability,
+                origin and lived experience. Bruca looks at how products and
+                language may land across these differences — including for
+                LGBTQ+ and trans readers, minorities, and people who are often
+                overlooked in mainstream design.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer className="mx-auto mt-16 flex max-w-6xl justify-between px-6 text-xs text-slate-600">
+        <span>© Bruca</span>
+
+        <span className="flex gap-4">
+          <Link href="/docs" className="transition hover:text-slate-300">
+            Docs
+          </Link>
+
+          <a href={DEMO} className="transition hover:text-slate-300">
+            Demo
+          </a>
+
+          <Link href="/terms" className="transition hover:text-slate-300">
+            Terms
+          </Link>
+        </span>
+      </footer>
+    </main>
+  );
+}
+
+/* ───────────── بلاگ ───────────── */
+export default function Home() {
+  if (SHOW_FULL_SITE) return <OldHome />;
+
+  return (
+    <main
+      className="relative min-h-screen overflow-hidden bg-[#fbfbfd] text-[#1d1d1f] antialiased"
+      style={{
+        fontFamily:
+          '-apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif',
+      }}
+    >
+      {/* نورهای نرم و رویایی */}
+      <div className="pointer-events-none absolute inset-0 -z-0">
+        <div className="absolute left-1/2 top-[-160px] h-[560px] w-[560px] -translate-x-[85%] rounded-full bg-sky-200/50 blur-[130px]" />
+        <div className="absolute left-1/2 top-[-120px] h-[520px] w-[520px] -translate-x-[10%] rounded-full bg-violet-200/50 blur-[130px]" />
+        <div className="absolute left-1/2 top-[80px] h-[420px] w-[420px] -translate-x-1/2 rounded-full bg-rose-100/60 blur-[120px]" />
+      </div>
+
+      <div className="relative z-10 flex min-h-screen flex-col">
+        <header className="mx-auto flex w-full max-w-5xl items-center justify-between px-6 py-6">
+          <Link
+            href="/"
+            className="text-[17px] font-semibold tracking-[-0.04em] text-[#1d1d1f]"
+          >
+            Bruca
+          </Link>
+
+          <span className="text-xs tracking-wide text-[#6e6e73]">
+            Open notes · 2026
+          </span>
+        </header>
+
+        <section className="mx-auto flex w-full max-w-3xl flex-1 flex-col items-center justify-center px-6 pb-24 pt-16 text-center">
+          <p className="text-xs font-medium uppercase tracking-[0.3em] text-[#6e6e73]">
+            A journal of inquiry
+          </p>
+
+          <h1 className="mt-6 text-5xl font-semibold leading-[1.05] tracking-[-0.045em] sm:text-7xl">
+            Science, fiction
+            <br />
+            <span className="bg-gradient-to-r from-sky-500 via-violet-500 to-rose-400 bg-clip-text text-transparent">
+              and research.
+            </span>
+          </h1>
+
+          <p className="mt-7 max-w-xl text-lg leading-8 text-[#6e6e73] sm:text-xl">
+            Experiments, speculative essays and open research notes. A quiet
+            place to think, a little beyond reality.
+          </p>
+
+          {posts.length === 0 ? (
+            <div className="mt-12 inline-flex items-center gap-2 rounded-full border border-black/[0.08] bg-white/70 px-5 py-2.5 text-sm text-[#6e6e73] backdrop-blur-xl">
+              <span className="h-1.5 w-1.5 rounded-full bg-violet-400" />
+              The first publication is on its way
+            </div>
+          ) : (
+            <div className="mt-14 w-full space-y-4 text-left">
+              {posts.map((p) => (
+                <a
+                  key={p.slug}
+                  href={p.href}
+                  className="block rounded-3xl border border-black/[0.06] bg-white/70 p-7 backdrop-blur-xl transition hover:bg-white"
+                >
+                  <time className="text-xs text-[#86868b]">{p.date}</time>
+                  <h2 className="mt-2 text-2xl font-semibold tracking-[-0.03em]">
+                    {p.title}
+                  </h2>
+                  <p className="mt-2 text-[15px] leading-7 text-[#6e6e73]">
+                    {p.summary}
+                  </p>
+                </a>
+              ))}
+            </div>
+          )}
+        </section>
+
+        <footer className="mx-auto flex w-full max-w-5xl justify-between px-6 pb-8 text-xs text-[#86868b]">
+          <span>© Bruca</span>
+          <Link href="/terms" className="transition hover:text-[#1d1d1f]">
+            Terms
+          </Link>
+        </footer>
+      </div>
+    </main>
+  );
+}
