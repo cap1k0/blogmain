@@ -56,8 +56,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="bg-[#05060a]">
-        {children}
+   <body className="bg-[#faf9f6]">
+  {children}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
