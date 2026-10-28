@@ -5,37 +5,38 @@ import "./globals.css";
 
 const baseUrl = "https://bruca.space";
 
+const siteTitle = "Bruca: science, fiction and research";
+
 const description =
-  "Bruca helps teams find and fix biased wording in text, product copy and brand stories. A team of diverse writers and a bias-detection algorithm in development, built with European audiences in mind.";
+  "A blog for a new age, a little beyond reality. Science, fiction and research from the Bruca team and its algorithm.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: "Bruca: bias detection for text and product stories",
+    default: siteTitle,
     template: "%s | Bruca",
   },
   description,
   keywords: [
-    "bias detection",
-    "inclusive language",
-    "inclusive writing",
-    "text bias analysis",
-    "product copy review",
-    "fair AI",
-    "European audiences",
+    "science blog",
+    "research blog",
+    "science fiction",
+    "language models",
+    "historical linguistics",
+    "evaluation",
   ],
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     url: baseUrl,
     siteName: "Bruca",
-    title: "Bruca: bias detection for text and product stories",
+    title: siteTitle,
     description,
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Bruca: bias detection for text and product stories",
+    title: siteTitle,
     description,
   },
   robots: { index: true, follow: true },
@@ -62,7 +63,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "Organization",
+              "@type": "Blog",
               name: "Bruca",
               url: baseUrl,
               description,
