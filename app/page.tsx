@@ -4,9 +4,27 @@ import BiasLens from "./components/BiasLens";
 const BLOG = "https://blog.bruca.space";
 const DEMO = "https://demo.bruca.space";
 
-// false = فقط ورودی وبلاگ نمایش داده می‌شود
+// false = فقط ورودی وبلاگ (Science · Fiction · Research) نمایش داده می‌شود
 // true  = کل سایت قبلی دوباره نمایش داده می‌شود
 const SHOW_FULL_SITE = false;
+
+const categories = [
+  {
+    n: "01",
+    t: "Science",
+    d: "Experiments, evaluations and what the results actually tell us.",
+  },
+  {
+    n: "02",
+    t: "Fiction",
+    d: "Short speculative stories from a world a little beyond reality.",
+  },
+  {
+    n: "03",
+    t: "Research",
+    d: "Pilot studies and open notes on language, models and bias.",
+  },
+];
 
 const post = {
   tag: "Research · Pilot study",
@@ -86,8 +104,46 @@ export default function Home() {
         )}
       </header>
 
-      {/* ورودی وبلاگ: همیشه نمایش داده می‌شود، کلیک می‌رود به بلاگ اصلی */}
-      <section className="mx-auto max-w-3xl px-6 pb-14 pt-16">
+      {/* ورودی وبلاگ: همیشه نمایش داده می‌شود */}
+      <section className="mx-auto max-w-3xl px-6 pb-10 pt-14">
+        <div className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.28em] text-cyan-300">
+          <span className="h-1.5 w-1.5 rounded-full bg-cyan-300 shadow-[0_0_12px_rgba(103,232,249,.9)]" />
+          Bruca · the blog
+        </div>
+
+        <h1 className="mt-5 text-4xl font-semibold leading-[1.05] tracking-[-0.04em] sm:text-6xl">
+          <span className="bg-gradient-to-r from-cyan-300 via-white to-fuchsia-300 bg-clip-text text-transparent">
+            Science, fiction
+          </span>
+          <br />
+          <span className="text-white">and research.</span>
+        </h1>
+
+        <p className="mt-5 max-w-xl text-base leading-7 text-slate-400">
+          A blog for a new age, a little beyond reality. Experiments, stories
+          and open notes from the Bruca team and its algorithm.
+        </p>
+
+        <div className="mt-8 grid gap-3 sm:grid-cols-3">
+          {categories.map((c) => (
+            <a
+              key={c.t}
+              href={BLOG}
+              className="group rounded-2xl border border-white/10 bg-white/[0.025] p-5 transition duration-300 hover:-translate-y-1 hover:border-cyan-300/25 hover:bg-white/[0.045]"
+            >
+              <span className="font-mono text-xs text-cyan-300/80">{c.n}</span>
+              <h2 className="mt-5 text-lg font-semibold text-white">{c.t}</h2>
+              <p className="mt-2 text-xs leading-5 text-slate-400">{c.d}</p>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-3xl px-6 pb-14">
+        <div className="mb-4 font-mono text-[11px] uppercase tracking-[0.28em] text-fuchsia-300">
+          Latest
+        </div>
+
         <a
           href={BLOG}
           className="group relative block overflow-hidden rounded-3xl border border-white/10 bg-white/[0.025] p-8 transition hover:border-cyan-300/25 sm:p-10"
@@ -100,9 +156,9 @@ export default function Home() {
               {post.tag}
             </div>
 
-            <h1 className="mt-5 text-3xl font-semibold leading-[1.1] tracking-[-0.03em] sm:text-5xl">
+            <h2 className="mt-5 text-2xl font-semibold leading-[1.15] tracking-[-0.03em] sm:text-4xl">
               {post.title}
-            </h1>
+            </h2>
 
             <p className="mt-2 text-base text-slate-400">{post.subtitle}</p>
 
