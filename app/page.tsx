@@ -184,12 +184,6 @@ export default function Home() {
             Bruca
           </Link>
 
-          <a
-            href={BLOG}
-            className="text-sm text-[#0066cc] transition hover:underline"
-          >
-            Blog →
-          </a>
         </header>
 
         <section className="mx-auto flex w-full max-w-3xl flex-1 flex-col items-center justify-center px-6 pb-24 pt-16 text-center">
@@ -216,12 +210,6 @@ export default function Home() {
               className="rounded-full bg-[#1d1d1f] px-7 py-3 text-[15px] font-medium text-white transition hover:bg-black"
             >
               Read the blog
-            </a>
-            <a
-              href={BLOG}
-              className="rounded-full border border-black/[0.1] bg-white/70 px-7 py-3 text-[15px] font-medium text-[#1d1d1f] backdrop-blur-xl transition hover:bg-white"
-            >
-              blog.bruca.space →
             </a>
           </div>
 
