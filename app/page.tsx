@@ -1,336 +1,161 @@
 import Link from "next/link";
-import BiasLens from "./components/BiasLens";
+import OldHome from "./components/OldHome";
 
 const BLOG = "https://blog.bruca.space";
-const DEMO = "https://demo.bruca.space";
 
-// false = فقط ورودی وبلاگ (Science · Fiction · Research) نمایش داده می‌شود
-// true  = کل سایت قبلی دوباره نمایش داده می‌شود
+// false = فقط بلاگ نمایش داده می‌شود
+// true  = سایت قبلی (Solutions, Demo, Docs, ...) نمایش داده می‌شود
 const SHOW_FULL_SITE = false;
 
-const categories = [
+type Category = "science" | "fiction" | "research";
+
+const categories: { key: Category; label: string }[] = [
+  { key: "science", label: "Science" },
+  { key: "fiction", label: "Fiction" },
+  { key: "research", label: "Research" },
+];
+
+const posts: {
+  slug: string;
+  category: Category;
+  title: string;
+  subtitle: string;
+  summary: string;
+  tags: string[];
+  date: string;
+  readTime: string;
+  href: string;
+}[] = [
   {
-    n: "01",
-    t: "Science",
-    d: "Experiments, evaluations and what the results actually tell us.",
-  },
-  {
-    n: "02",
-    t: "Fiction",
-    d: "Short speculative stories from a world a little beyond reality.",
-  },
-  {
-    n: "03",
-    t: "Research",
-    d: "Pilot studies and open notes on language, models and bias.",
+    slug: "llm-historian-editing",
+    category: "research",
+    title: "Can a general-purpose LLM edit like a historian?",
+    subtitle: "A pilot on Middle French text normalization",
+    summary:
+      "Qwen2.5-14B-Instruct against human-style normalization of 16th-century French. The model understands the text. It also over-modernizes it, a bias in the same family Bruca studies.",
+    tags: ["language models", "historical linguistics", "evaluation"],
+    date: "25 Oct 2026",
+    readTime: "Pilot study",
+    href: BLOG,
   },
 ];
 
-const post = {
-  tag: "Research · Pilot study",
-  title: "Can a general-purpose LLM edit like a historian?",
-  subtitle: "A pilot on Middle French text normalization",
-  summary:
-    "Qwen2.5-14B-Instruct against human-style normalization of 16th-century French. The model understands the text. It also over-modernizes it, a bias in the same family Bruca studies.",
-  byline:
-    "Written by the Bruca algorithm and its developer, with our diverse team. An attempt at a research and science blog for a new age, a little beyond reality.",
-  tags: ["language models", "historical linguistics", "evaluation"],
-  date: "25 Oct 2026",
-};
+export default function Home({
+  searchParams,
+}: {
+  searchParams?: { c?: string };
+}) {
+  if (SHOW_FULL_SITE) return <OldHome />;
 
-const solutions = [
-  {
-    n: "01",
-    t: "Text review",
-    d: "We examine your copy from different reader perspectives and flag wording that quietly assumes who your audience is.",
-  },
-  {
-    n: "02",
-    t: "Product review",
-    d: "Features, defaults, forms and onboarding get the same check: who is this designed for, and who might be left out?",
-  },
-  {
-    n: "03",
-    t: "Product stories",
-    d: "Brand stories, founder narratives and campaigns carry assumptions too. We examine the story behind the words.",
-  },
-];
+  const active = categories.find((c) => c.key === searchParams?.c)?.key;
+  const visible = active ? posts.filter((p) => p.category === active) : posts;
 
-export default function Home() {
   return (
-    <main className="relative min-h-screen overflow-hidden bg-[#05070d] pb-16 text-white">
-      <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute left-[8%] top-[-10%] h-[420px] w-[420px] rounded-full bg-cyan-500/10 blur-[120px]" />
-        <div className="absolute right-[5%] top-[20%] h-[360px] w-[360px] rounded-full bg-fuchsia-500/10 blur-[120px]" />
-
-        <div
-          className="absolute inset-0 opacity-[0.035]"
-          style={{
-            backgroundImage:
-              "linear-gradient(rgba(255,255,255,.8) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.8) 1px, transparent 1px)",
-            backgroundSize: "48px 48px",
-          }}
-        />
-      </div>
-
-      <header className="mx-auto flex max-w-6xl items-center justify-between px-6 py-6">
-        <Link href="/" className="group">
-          <div className="text-xl font-black tracking-[-0.08em] text-white transition group-hover:text-cyan-300">
+    <main className="min-h-screen bg-[#faf9f6] text-neutral-900">
+      <header className="border-b border-neutral-200">
+        <div className="mx-auto flex max-w-3xl items-center justify-between px-6 py-5">
+          <Link href="/" className="text-lg font-black tracking-[-0.06em]">
             BRUCA
-          </div>
-        </Link>
+            <span className="ml-2 font-sans text-xs font-normal tracking-normal text-neutral-500">
+              blog
+            </span>
+          </Link>
 
-        {SHOW_FULL_SITE && (
-          <nav className="flex items-center gap-5 text-sm text-slate-400">
-            <a href="#solutions" className="transition hover:text-white">
-              Solutions
-            </a>
-
-            <Link href="/docs" className="transition hover:text-white">
-              Docs
-            </Link>
-
-            <a href={DEMO} className="transition hover:text-white">
-              Demo
-            </a>
-
-            <a
-              href={BLOG}
-              className="rounded-full border border-white/15 bg-white/[0.03] px-4 py-1.5 text-white transition hover:border-cyan-300/50 hover:bg-cyan-300/10"
+          <nav className="flex items-center gap-5 text-sm text-neutral-500">
+            <Link
+              href="/"
+              className={!active ? "font-medium text-neutral-900" : "hover:text-neutral-900"}
             >
-              Blog →
-            </a>
+              All
+            </Link>
+            {categories.map((c) => (
+              <Link
+                key={c.key}
+                href={`/?c=${c.key}`}
+                className={
+                  active === c.key
+                    ? "font-medium text-neutral-900"
+                    : "hover:text-neutral-900"
+                }
+              >
+                {c.label}
+              </Link>
+            ))}
           </nav>
-        )}
+        </div>
       </header>
 
-      {/* ورودی وبلاگ: همیشه نمایش داده می‌شود */}
-      <section className="mx-auto max-w-3xl px-6 pb-10 pt-14">
-        <div className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.28em] text-cyan-300">
-          <span className="h-1.5 w-1.5 rounded-full bg-cyan-300 shadow-[0_0_12px_rgba(103,232,249,.9)]" />
-          Bruca · the blog
-        </div>
-
-        <h1 className="mt-5 text-4xl font-semibold leading-[1.05] tracking-[-0.04em] sm:text-6xl">
-          <span className="bg-gradient-to-r from-cyan-300 via-white to-fuchsia-300 bg-clip-text text-transparent">
-            Science, fiction
-          </span>
-          <br />
-          <span className="text-white">and research.</span>
+      <section className="mx-auto max-w-3xl px-6 pb-8 pt-14">
+        <h1 className="font-serif text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">
+          Science, fiction and research.
         </h1>
-
-        <p className="mt-5 max-w-xl text-base leading-7 text-slate-400">
-          A blog for a new age, a little beyond reality. Experiments, stories
-          and open notes from the Bruca team and its algorithm.
+        <p className="mt-4 max-w-xl text-base leading-7 text-neutral-600">
+          A blog for a new age, a little beyond reality. Written by the Bruca
+          algorithm and its developer, with our diverse team.
         </p>
-
-        <div className="mt-8 grid gap-3 sm:grid-cols-3">
-          {categories.map((c) => (
-            <a
-              key={c.t}
-              href={BLOG}
-              className="group rounded-2xl border border-white/10 bg-white/[0.025] p-5 transition duration-300 hover:-translate-y-1 hover:border-cyan-300/25 hover:bg-white/[0.045]"
-            >
-              <span className="font-mono text-xs text-cyan-300/80">{c.n}</span>
-              <h2 className="mt-5 text-lg font-semibold text-white">{c.t}</h2>
-              <p className="mt-2 text-xs leading-5 text-slate-400">{c.d}</p>
-            </a>
-          ))}
-        </div>
       </section>
 
-      <section className="mx-auto max-w-3xl px-6 pb-14">
-        <div className="mb-4 font-mono text-[11px] uppercase tracking-[0.28em] text-fuchsia-300">
-          Latest
-        </div>
-
-        <a
-          href={BLOG}
-          className="group relative block overflow-hidden rounded-3xl border border-white/10 bg-white/[0.025] p-8 transition hover:border-cyan-300/25 sm:p-10"
-        >
-          <div className="absolute right-0 top-0 h-40 w-40 rounded-full bg-cyan-400/10 blur-[80px] transition group-hover:bg-cyan-400/20" />
-
-          <div className="relative">
-            <div className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.28em] text-cyan-300">
-              <span className="h-1.5 w-1.5 rounded-full bg-cyan-300 shadow-[0_0_12px_rgba(103,232,249,.9)]" />
-              {post.tag}
-            </div>
-
-            <h2 className="mt-5 text-2xl font-semibold leading-[1.15] tracking-[-0.03em] sm:text-4xl">
-              {post.title}
-            </h2>
-
-            <p className="mt-2 text-base text-slate-400">{post.subtitle}</p>
-
-            <p className="mt-6 text-sm leading-7 text-slate-300 sm:text-base">
-              {post.summary}
-            </p>
-
-            <p className="mt-5 border-l border-fuchsia-300/40 pl-4 text-xs leading-6 text-slate-500">
-              {post.byline}
-            </p>
-
-            <div className="mt-6 flex flex-wrap gap-2">
-              {post.tags.map((t) => (
-                <span
-                  key={t}
-                  className="rounded-full border border-white/10 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.15em] text-slate-400"
-                >
-                  {t}
-                </span>
-              ))}
-            </div>
-
-            <div className="mt-8 flex items-center justify-between">
-              <span className="font-mono text-xs text-slate-500">
-                {post.date}
-              </span>
-
-              <span className="rounded-full bg-white px-6 py-3 text-sm font-semibold text-black transition group-hover:bg-cyan-200">
-                Read on the blog →
-              </span>
-            </div>
-          </div>
-        </a>
-      </section>
-
-      {/* بقیه سایت: داخل کد هست ولی تا SHOW_FULL_SITE روی false است نمایش داده نمی‌شود */}
-      {SHOW_FULL_SITE && (
-        <>
-          <section className="mx-auto max-w-6xl px-6 pb-14 pt-20">
-            <div className="max-w-4xl">
-              <div className="mb-5 flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.28em] text-cyan-300">
-                <span className="h-1.5 w-1.5 rounded-full bg-cyan-300 shadow-[0_0_12px_rgba(103,232,249,.9)]" />
-                Bruca · bias intelligence
-              </div>
-
-              <h2 className="max-w-4xl text-5xl font-semibold leading-[1.02] tracking-[-0.045em] sm:text-7xl">
-                <span className="text-white">Words that include</span>
-                <br />
-                <span className="bg-gradient-to-r from-cyan-300 via-white to-fuchsia-300 bg-clip-text text-transparent">
-                  the people you write for.
-                </span>
-              </h2>
-
-              <p className="mt-7 max-w-2xl text-base leading-7 text-slate-400 sm:text-lg">
-                Bruca combines human perspectives with an algorithm in
-                development to detect bias in language, products and the
-                stories behind them — helping teams understand who their work
-                speaks to, and who it may leave out.
-              </p>
-
-              <div className="mt-8 flex flex-wrap gap-3">
-                <a
-                  href={DEMO}
-                  className="rounded-full bg-white px-6 py-3 text-sm font-semibold text-black transition hover:bg-cyan-200"
-                >
-                  Try the demo →
-                </a>
-
-                <a
-                  href="#solutions"
-                  className="rounded-full border border-white/15 px-6 py-3 text-sm font-medium text-slate-300 transition hover:border-white/30 hover:text-white"
-                >
-                  Explore Bruca
-                </a>
-              </div>
-            </div>
-          </section>
-
-          <section className="mx-auto max-w-6xl px-6">
-            <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.025] p-1 shadow-2xl shadow-black/30">
-              <div className="absolute inset-0 bg-gradient-to-br from-cyan-400/[0.06] via-transparent to-fuchsia-400/[0.06]" />
-
-              <div className="relative rounded-[22px] border border-white/5 bg-[#080b12]/90">
-                <BiasLens />
-              </div>
-            </div>
-          </section>
-
-          <section id="solutions" className="mx-auto mt-24 max-w-6xl px-6">
-            <div className="font-mono text-[11px] uppercase tracking-[0.28em] text-fuchsia-300">
-              Solutions
-            </div>
-
-            <div className="mt-3 flex flex-col justify-between gap-5 md:flex-row md:items-end">
-              <h2 className="max-w-xl text-3xl font-semibold tracking-tight sm:text-4xl">
-                Bias can hide in more than words.
-              </h2>
-
-              <p className="max-w-md text-sm leading-6 text-slate-500">
-                We are developing our models now. Sample texts and what we
-                learn from them are published on the blog.
-              </p>
-            </div>
-
-            <div className="mt-8 grid gap-4 sm:grid-cols-3">
-              {solutions.map((s) => (
-                <div
-                  key={s.n}
-                  className="group rounded-2xl border border-white/10 bg-white/[0.025] p-6 transition duration-300 hover:-translate-y-1 hover:border-cyan-300/25 hover:bg-white/[0.045]"
-                >
-                  <span className="font-mono text-xs text-cyan-300/80">
-                    {s.n}
+      <section className="mx-auto max-w-3xl px-6 pb-20">
+        {visible.length === 0 ? (
+          <p className="border-t border-neutral-200 py-10 text-sm text-neutral-400">
+            Nothing here yet.
+          </p>
+        ) : (
+          <div className="divide-y divide-neutral-200 border-t border-neutral-200">
+            {visible.map((p) => (
+              <article key={p.slug} className="py-10">
+                <div className="flex items-center gap-3 text-xs text-neutral-500">
+                  <span className="font-medium uppercase tracking-[0.18em] text-neutral-900">
+                    {p.category}
                   </span>
-
-                  <h3 className="mt-8 text-xl font-semibold text-white">
-                    {s.t}
-                  </h3>
-
-                  <p className="mt-3 text-sm leading-6 text-slate-400">
-                    {s.d}
-                  </p>
-
-                  <div className="mt-8 h-px w-8 bg-gradient-to-r from-cyan-300 to-transparent transition-all duration-300 group-hover:w-16" />
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-4 rounded-2xl border border-white/10 bg-gradient-to-r from-white/[0.035] to-transparent p-7">
-              <div className="grid gap-6 md:grid-cols-[180px_1fr]">
-                <div className="font-mono text-xs uppercase tracking-[0.2em] text-fuchsia-300">
-                  Global audience
+                  <span>·</span>
+                  <time>{p.date}</time>
+                  <span>·</span>
+                  <span>{p.readTime}</span>
                 </div>
 
-                <div>
-                  <h3 className="text-xl font-semibold text-white">
-                    Inclusive by design, for audiences around the world.
-                  </h3>
+                <h2 className="mt-3 font-serif text-2xl font-semibold leading-snug tracking-tight sm:text-3xl">
+                  <a href={p.href} className="hover:underline">
+                    {p.title}
+                  </a>
+                </h2>
 
-                  <p className="mt-3 max-w-3xl text-sm leading-6 text-slate-400">
-                    Audiences differ by language, culture, identity, age,
-                    ability, origin and lived experience. Bruca looks at how
-                    products and language may land across these differences —
-                    including for LGBTQ+ and trans readers, minorities, and
-                    people who are often overlooked in mainstream design.
-                  </p>
+                <p className="mt-1 text-neutral-500">{p.subtitle}</p>
+
+                <p className="mt-4 leading-7 text-neutral-700">{p.summary}</p>
+
+                <div className="mt-5 flex flex-wrap items-center justify-between gap-3">
+                  <div className="flex flex-wrap gap-2">
+                    {p.tags.map((t) => (
+                      <span
+                        key={t}
+                        className="rounded-full border border-neutral-300 px-3 py-0.5 text-xs text-neutral-600"
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+
+                  <a
+                    href={p.href}
+                    className="text-sm font-medium text-neutral-900 hover:underline"
+                  >
+                    Read →
+                  </a>
                 </div>
-              </div>
-            </div>
-          </section>
-        </>
-      )}
+              </article>
+            ))}
+          </div>
+        )}
+      </section>
 
-      <footer className="mx-auto mt-16 flex max-w-6xl justify-between px-6 text-xs text-slate-600">
-        <span>© Bruca</span>
-
-        <span className="flex gap-4">
-          {SHOW_FULL_SITE && (
-            <>
-              <Link href="/docs" className="transition hover:text-slate-300">
-                Docs
-              </Link>
-
-              <a href={DEMO} className="transition hover:text-slate-300">
-                Demo
-              </a>
-            </>
-          )}
-
-          <Link href="/terms" className="transition hover:text-slate-300">
+      <footer className="border-t border-neutral-200">
+        <div className="mx-auto flex max-w-3xl justify-between px-6 py-6 text-xs text-neutral-500">
+          <span>© Bruca</span>
+          <Link href="/terms" className="hover:text-neutral-900">
             Terms
           </Link>
-        </span>
+        </div>
       </footer>
     </main>
   );
