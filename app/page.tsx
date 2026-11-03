@@ -1,245 +1,456 @@
+
 import Link from "next/link";
-import BiasLens from "./components/BiasLens";
 
-const BLOG = "https://blog.bruca.space";
-const DEMO = "https://demo.bruca.space";
+const languages = [
+  { name: "English", native: "English", flag: "🇬🇧", level: "A1 – C2", description: "Grammar, vocabulary and communication" },
+  { name: "German", native: "Deutsch", flag: "🇩🇪", level: "A1 – C2", description: "Learn German from the basics" },
+  { name: "French", native: "Français", flag: "🇫🇷", level: "A1 – C2", description: "Discover French language and culture" },
+  { name: "Spanish", native: "Español", flag: "🇪🇸", level: "A1 – C2", description: "Speak Spanish with confidence" },
+  { name: "Italian", native: "Italiano", flag: "🇮🇹", level: "A1 – C2", description: "Explore Italian expressions" },
+  { name: "Russian", native: "Русский", flag: "🇷🇺", level: "A1 – C2", description: "Master Russian step by step" },
+  { name: "Arabic", native: "العربية", flag: "🇸🇦", level: "Beginner – Advanced", description: "Modern Standard Arabic and more" },
+  { name: "Japanese", native: "日本語", flag: "🇯🇵", level: "Beginner – Advanced", description: "Grammar, kanji and conversation" },
+  { name: "Chinese", native: "中文", flag: "🇨🇳", level: "Beginner – Advanced", description: "Mandarin vocabulary and tones" },
+  { name: "Portuguese", native: "Português", flag: "🇵🇹", level: "A1 – C2", description: "European and Brazilian Portuguese" },
+  { name: "Turkish", native: "Türkçe", flag: "🇹🇷", level: "Beginner – Advanced", description: "Learn everyday Turkish" },
+  { name: "Dutch", native: "Nederlands", flag: "🇳🇱", level: "A1 – C2", description: "Build your Dutch skills" },
+];
 
-// false = فقط صفحهٔ بلاگ نمایش داده می‌شود
-// true  = سایت قبلی (Solutions, Demo, Docs, ...) نمایش داده می‌شود
-const SHOW_FULL_SITE = false;
-
-type Post = {
-  slug: string;
-  title: string;
-  summary: string;
-  date: string;
-  href: string;
-};
-
-// برای اضافه‌کردن پست بعدی، یک آبجکت به این آرایه اضافه کن
-const posts: Post[] = [];
-
-const solutions = [
+const skills = [
   {
-    n: "01",
-    t: "Text review",
-    d: "We examine your copy from different reader perspectives and flag wording that quietly assumes who your audience is.",
+    icon: "📖",
+    title: "Grammar",
+    description: "Understand grammar rules, sentence structures and how languages work.",
   },
   {
-    n: "02",
-    t: "Product review",
-    d: "Features, defaults, forms and onboarding get the same check: who is this designed for, and who might be left out?",
+    icon: "🧠",
+    title: "Vocabulary",
+    description: "Expand your vocabulary with useful words, expressions and collocations.",
   },
   {
-    n: "03",
-    t: "Product stories",
-    d: "Brand stories, founder narratives and campaigns carry assumptions too. We examine the story behind the words.",
+    icon: "🎧",
+    title: "Listening",
+    description: "Improve comprehension through conversations and listening exercises.",
+  },
+  {
+    icon: "🗣️",
+    title: "Speaking",
+    description: "Develop fluency and confidence through practical communication.",
+  },
+  {
+    icon: "✍️",
+    title: "Writing",
+    description: "Learn to write naturally, accurately and effectively.",
+  },
+  {
+    icon: "🔊",
+    title: "Pronunciation",
+    description: "Explore sounds, stress, intonation and phonetics.",
   },
 ];
 
-/* ───────── سایت قبلی: داخل کد هست ولی تا SHOW_FULL_SITE=false نمایش داده نمی‌شود ───────── */
-function OldHome() {
-  return (
-    <main className="relative min-h-screen overflow-hidden bg-[#05070d] pb-16 text-white">
-      <header className="mx-auto flex max-w-6xl items-center justify-between px-6 py-6">
-        <Link href="/" className="text-xl font-black tracking-[-0.08em]">
-          BRUCA
-        </Link>
+const levels = [
+  { name: "A1", title: "Beginner", description: "Understand and use basic expressions." },
+  { name: "A2", title: "Elementary", description: "Communicate in familiar situations." },
+  { name: "B1", title: "Intermediate", description: "Handle everyday conversations independently." },
+  { name: "B2", title: "Upper Intermediate", description: "Discuss complex topics with confidence." },
+  { name: "C1", title: "Advanced", description: "Use language flexibly in academic and professional contexts." },
+  { name: "C2", title: "Proficient", description: "Understand and express subtle meanings with precision." },
+];
 
-        <nav className="flex items-center gap-5 text-sm text-slate-400">
-          <a href="#solutions" className="transition hover:text-white">
-            Solutions
-          </a>
-          <Link href="/docs" className="transition hover:text-white">
-            Docs
-          </Link>
-          <a href={DEMO} className="transition hover:text-white">
-            Demo
-          </a>
-          <a
-            href={BLOG}
-            className="rounded-full border border-white/15 px-4 py-1.5 text-white"
-          >
-            Blog →
-          </a>
-        </nav>
-      </header>
+const topics = [
+  { category: "Grammar", title: "Understanding English conditionals", level: "B2", language: "English", description: "A practical guide to zero, first, second, third and mixed conditionals." },
+  { category: "Vocabulary", title: "Essential German everyday expressions", level: "A1–A2", language: "German", description: "Useful expressions for everyday conversations in German." },
+  { category: "Pronunciation", title: "English pronunciation: /θ/ and /ð/", level: "B1", language: "English", description: "Learn the difference between the two English TH sounds." },
+  { category: "Grammar", title: "French articles explained", level: "A1", language: "French", description: "Understand definite, indefinite and partitive articles." },
+  { category: "Vocabulary", title: "Spanish phrasal expressions", level: "B1", language: "Spanish", description: "Discover natural expressions used by native speakers." },
+  { category: "Learning tips", title: "How to improve your listening skills", level: "All levels", language: "Multiple languages", description: "Practical strategies for developing listening comprehension." },
+];
 
-      <section className="mx-auto max-w-6xl px-6 pb-14 pt-20">
-        <h1 className="max-w-4xl text-5xl font-semibold leading-[1.02] tracking-[-0.045em] sm:text-7xl">
-          Words that include
-          <br />
-          <span className="bg-gradient-to-r from-cyan-300 via-white to-fuchsia-300 bg-clip-text text-transparent">
-            the people you write for.
-          </span>
-        </h1>
-
-        <p className="mt-7 max-w-2xl text-base leading-7 text-slate-400 sm:text-lg">
-          Bruca combines human perspectives with an algorithm in development to
-          detect bias in language, products and the stories behind them —
-          helping teams understand who their work speaks to, and who it may
-          leave out.
-        </p>
-
-        <div className="mt-8 flex flex-wrap gap-3">
-          <a
-            href={DEMO}
-            className="rounded-full bg-white px-6 py-3 text-sm font-semibold text-black"
-          >
-            Try the demo →
-          </a>
-          <a
-            href="#solutions"
-            className="rounded-full border border-white/15 px-6 py-3 text-sm text-slate-300"
-          >
-            Explore Bruca
-          </a>
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-6xl px-6">
-        <div className="rounded-3xl border border-white/10 bg-white/[0.025] p-1">
-          <div className="rounded-[22px] border border-white/5 bg-[#080b12]/90">
-            <BiasLens />
-          </div>
-        </div>
-      </section>
-
-      <section id="solutions" className="mx-auto mt-24 max-w-6xl px-6">
-        <div className="font-mono text-[11px] uppercase tracking-[0.28em] text-fuchsia-300">
-          Solutions
-        </div>
-
-        <h2 className="mt-3 max-w-xl text-3xl font-semibold tracking-tight sm:text-4xl">
-          Bias can hide in more than words.
-        </h2>
-
-        <div className="mt-8 grid gap-4 sm:grid-cols-3">
-          {solutions.map((s) => (
-            <div
-              key={s.n}
-              className="rounded-2xl border border-white/10 bg-white/[0.025] p-6"
-            >
-              <span className="font-mono text-xs text-cyan-300/80">{s.n}</span>
-              <h3 className="mt-8 text-xl font-semibold">{s.t}</h3>
-              <p className="mt-3 text-sm leading-6 text-slate-400">{s.d}</p>
-            </div>
-          ))}
-        </div>
-
-        <div className="mt-4 rounded-2xl border border-white/10 p-7">
-          <div className="font-mono text-xs uppercase tracking-[0.2em] text-fuchsia-300">
-            Global audience
-          </div>
-          <h3 className="mt-3 text-xl font-semibold">
-            Inclusive by design, for audiences around the world.
-          </h3>
-          <p className="mt-3 max-w-3xl text-sm leading-6 text-slate-400">
-            Audiences differ by language, culture, identity, age, ability,
-            origin and lived experience. Bruca looks at how products and
-            language may land across these differences — including for LGBTQ+
-            and trans readers, minorities, and people who are often overlooked
-            in mainstream design.
-          </p>
-        </div>
-      </section>
-
-      <footer className="mx-auto mt-16 flex max-w-6xl justify-between px-6 text-xs text-slate-600">
-        <span>© Bruca</span>
-        <span className="flex gap-4">
-          <Link href="/docs">Docs</Link>
-          <a href={DEMO}>Demo</a>
-          <Link href="/terms">Terms</Link>
-        </span>
-      </footer>
-    </main>
-  );
-}
-
-/* ───────────── بلاگ ───────────── */
 export default function Home() {
-  if (SHOW_FULL_SITE) return <OldHome />;
-
   return (
-    <main
-      className="relative min-h-screen overflow-hidden bg-[#fbfbfd] text-[#1d1d1f] antialiased"
-      style={{
-        fontFamily:
-          '-apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif',
-      }}
-    >
-      {/* نورهای نرم و رویایی */}
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute left-1/2 top-[-160px] h-[560px] w-[560px] -translate-x-[85%] rounded-full bg-sky-200/50 blur-[130px]" />
-        <div className="absolute left-1/2 top-[-120px] h-[520px] w-[520px] -translate-x-[10%] rounded-full bg-violet-200/50 blur-[130px]" />
-        <div className="absolute left-1/2 top-[80px] h-[420px] w-[420px] -translate-x-1/2 rounded-full bg-rose-100/60 blur-[120px]" />
+    <main className="min-h-screen overflow-hidden bg-[#fbfbfd] text-[#202124] antialiased">
+
+      {/* Background */}
+      <div className="pointer-events-none fixed inset-0 overflow-hidden">
+        <div className="absolute -top-48 left-1/4 h-[500px] w-[500px] rounded-full bg-sky-200/30 blur-[130px]" />
+        <div className="absolute -top-40 right-0 h-[500px] w-[500px] rounded-full bg-violet-200/30 blur-[130px]" />
       </div>
 
-      <div className="relative z-10 flex min-h-screen flex-col">
-        <header className="mx-auto flex w-full max-w-5xl items-center justify-between px-6 py-6">
-          <Link
-            href="/"
-            className="text-[17px] font-semibold tracking-[-0.04em] text-[#1d1d1f]"
-          >
-            Bruca
-          </Link>
+      <div className="relative z-10">
 
+        {/* Header */}
+        <header className="sticky top-0 z-50 border-b border-black/[0.05] bg-white/80 backdrop-blur-xl">
+          <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+
+            <Link href="/" className="text-2xl font-bold tracking-[-0.07em]">
+              Bruca<span className="text-violet-500">.</span>
+            </Link>
+
+            <nav className="hidden items-center gap-7 text-sm text-[#62636b] md:flex">
+              <a href="#languages" className="transition hover:text-black">Languages</a>
+              <a href="#skills" className="transition hover:text-black">Learning Skills</a>
+              <a href="#levels" className="transition hover:text-black">Levels</a>
+              <a href="#articles" className="transition hover:text-black">Articles</a>
+              <Link href="/terms" className="transition hover:text-black">About</Link>
+            </nav>
+
+            <a
+              href="#languages"
+              className="rounded-full bg-[#202124] px-5 py-2.5 text-sm font-medium text-white transition hover:bg-violet-600"
+            >
+              Start learning →
+            </a>
+
+          </div>
         </header>
 
-        <section className="mx-auto flex w-full max-w-3xl flex-1 flex-col items-center justify-center px-6 pb-24 pt-16 text-center">
-          <p className="text-xs font-medium uppercase tracking-[0.3em] text-[#6e6e73]">
-            A journal of inquiry
-          </p>
+        {/* Hero */}
+        <section className="mx-auto flex max-w-7xl flex-col items-center px-6 pb-24 pt-24 text-center sm:pt-32">
 
-          <h1 className="mt-6 text-5xl font-semibold leading-[1.05] tracking-[-0.045em] sm:text-7xl">
-            Science, fiction
+          <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-violet-200 bg-violet-50 px-4 py-2 text-xs font-medium text-violet-700">
+            🌍 A world of languages, one place to learn
+          </div>
+
+          <h1 className="max-w-5xl text-5xl font-semibold leading-[1.08] tracking-[-0.055em] sm:text-7xl lg:text-8xl">
+            Discover languages.
             <br />
-            <span className="bg-gradient-to-r from-sky-500 via-violet-500 to-rose-400 bg-clip-text text-transparent">
-              and research.
+            <span className="bg-gradient-to-r from-sky-500 via-violet-500 to-pink-500 bg-clip-text text-transparent">
+              Discover the world.
             </span>
           </h1>
 
-          <p className="mt-7 max-w-xl text-lg leading-8 text-[#6e6e73] sm:text-xl">
-            Experiments, speculative essays and open research notes. A quiet
-            place to think, a little beyond reality.
+          <p className="mt-8 max-w-2xl text-base leading-8 text-[#707078] sm:text-xl">
+            Explore languages through structured lessons, practical examples,
+            grammar guides, vocabulary and real-world communication.
+            Learn at your own pace and open new possibilities.
           </p>
 
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
+          <div className="mt-10 flex flex-wrap justify-center gap-4">
             <a
-              href={BLOG}
-              className="rounded-full bg-[#1d1d1f] px-7 py-3 text-[15px] font-medium text-white transition hover:bg-black"
+              href="#languages"
+              className="rounded-full bg-[#202124] px-8 py-4 text-sm font-semibold text-white shadow-lg transition hover:-translate-y-1 hover:bg-violet-600"
             >
-              Read the blog
+              Explore languages →
+            </a>
+
+            <a
+              href="#skills"
+              className="rounded-full border border-black/10 bg-white px-8 py-4 text-sm font-semibold transition hover:border-violet-300"
+            >
+              Explore learning resources
             </a>
           </div>
 
-          {posts.length === 0 ? null : (
-            <div className="mt-14 w-full space-y-4 text-left">
-              {posts.map((p) => (
-                <a
-                  key={p.slug}
-                  href={p.href}
-                  className="block rounded-3xl border border-black/[0.06] bg-white/70 p-7 backdrop-blur-xl transition hover:bg-white"
-                >
-                  <time className="text-xs text-[#86868b]">{p.date}</time>
-                  <h2 className="mt-2 text-2xl font-semibold tracking-[-0.03em]">
-                    {p.title}
-                  </h2>
-                  <p className="mt-2 text-[15px] leading-7 text-[#6e6e73]">
-                    {p.summary}
-                  </p>
-                </a>
-              ))}
-            </div>
-          )}
+          <div className="mt-16 flex flex-wrap justify-center gap-3 text-sm text-[#777780]">
+            <span className="rounded-full bg-white px-4 py-2 shadow-sm">Grammar</span>
+            <span className="rounded-full bg-white px-4 py-2 shadow-sm">Vocabulary</span>
+            <span className="rounded-full bg-white px-4 py-2 shadow-sm">Speaking</span>
+            <span className="rounded-full bg-white px-4 py-2 shadow-sm">Listening</span>
+            <span className="rounded-full bg-white px-4 py-2 shadow-sm">Pronunciation</span>
+          </div>
+
         </section>
 
-        <footer className="mx-auto flex w-full max-w-5xl justify-between px-6 pb-8 text-xs text-[#86868b]">
-          <span>© Bruca</span>
-          <Link href="/terms" className="transition hover:text-[#1d1d1f]">
-            Terms
-          </Link>
+        {/* Languages */}
+        <section id="languages" className="mx-auto max-w-7xl scroll-mt-24 px-6 py-20">
+
+          <div className="mb-12 flex flex-wrap items-end justify-between gap-5">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-violet-600">
+                Explore the world
+              </p>
+              <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-5xl">
+                Choose your language.
+              </h2>
+              <p className="mt-4 max-w-xl text-[#777780]">
+                From widely spoken languages to fascinating writing systems,
+                find a language that inspires you.
+              </p>
+            </div>
+
+            <span className="text-sm text-[#888890]">
+              Explore our language collection
+            </span>
+          </div>
+
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {languages.map((language) => (
+              <a
+                key={language.name}
+                href="#articles"
+                className="group rounded-3xl border border-black/[0.06] bg-white/80 p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-violet-200 hover:shadow-xl"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="text-4xl">{language.flag}</span>
+                  <span className="rounded-full bg-[#f4f3fa] px-3 py-1 text-[10px] font-medium text-violet-700">
+                    {language.level}
+                  </span>
+                </div>
+
+                <h3 className="mt-6 text-xl font-semibold tracking-tight">
+                  {language.name}
+                </h3>
+
+                <p className="mt-1 text-sm text-[#92929a]">
+                  {language.native}
+                </p>
+
+                <p className="mt-4 text-sm leading-6 text-[#777780]">
+                  {language.description}
+                </p>
+
+                <div className="mt-6 text-sm font-medium text-violet-600 transition group-hover:translate-x-1">
+                  Explore resources →
+                </div>
+              </a>
+            ))}
+          </div>
+
+          <p className="mt-8 text-center text-sm text-[#92929a]">
+            More languages will be added as the learning library grows.
+          </p>
+
+        </section>
+
+        {/* Skills */}
+        <section id="skills" className="scroll-mt-24 bg-[#f3f2f8] py-24">
+
+          <div className="mx-auto max-w-7xl px-6">
+
+            <div className="mx-auto mb-14 max-w-2xl text-center">
+              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-violet-600">
+                Learn every aspect
+              </p>
+
+              <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-5xl">
+                Build real language skills.
+              </h2>
+
+              <p className="mt-5 leading-7 text-[#777780]">
+                Language learning is more than memorising words.
+                Develop the skills you need to understand and communicate effectively.
+              </p>
+            </div>
+
+            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {skills.map((skill) => (
+                <div
+                  key={skill.title}
+                  className="rounded-3xl border border-black/[0.04] bg-white p-8 transition hover:-translate-y-1 hover:shadow-lg"
+                >
+                  <div className="text-4xl">{skill.icon}</div>
+
+                  <h3 className="mt-6 text-xl font-semibold">
+                    {skill.title}
+                  </h3>
+
+                  <p className="mt-3 text-sm leading-7 text-[#777780]">
+                    {skill.description}
+                  </p>
+
+                  <a
+                    href="#articles"
+                    className="mt-6 inline-block text-sm font-medium text-violet-600"
+                  >
+                    Explore resources →
+                  </a>
+                </div>
+              ))}
+            </div>
+
+          </div>
+        </section>
+
+        {/* Levels */}
+        <section id="levels" className="mx-auto max-w-7xl scroll-mt-24 px-6 py-24">
+
+          <div className="mb-12 text-center">
+            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-violet-600">
+              Your learning journey
+            </p>
+
+            <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-5xl">
+              From beginner to proficient.
+            </h2>
+
+            <p className="mx-auto mt-5 max-w-2xl text-[#777780]">
+              Discover the Common European Framework of Reference for Languages
+              and find the right learning level.
+            </p>
+          </div>
+
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {levels.map((level) => (
+              <div
+                key={level.name}
+                className="rounded-3xl border border-black/[0.06] bg-white p-7 transition hover:border-violet-200 hover:shadow-lg"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="text-3xl font-bold tracking-tight text-violet-600">
+                    {level.name}
+                  </span>
+
+                  <span className="rounded-full bg-violet-50 px-3 py-1 text-xs text-violet-600">
+                    CEFR
+                  </span>
+                </div>
+
+                <h3 className="mt-5 text-lg font-semibold">
+                  {level.title}
+                </h3>
+
+                <p className="mt-3 text-sm leading-6 text-[#777780]">
+                  {level.description}
+                </p>
+              </div>
+            ))}
+          </div>
+
+        </section>
+
+        {/* Learning articles */}
+        <section id="articles" className="scroll-mt-24 bg-white py-24">
+
+          <div className="mx-auto max-w-7xl px-6">
+
+            <div className="mb-12 flex flex-wrap items-end justify-between gap-5">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.25em] text-violet-600">
+                  Knowledge library
+                </p>
+
+                <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-5xl">
+                  Learn something new.
+                </h2>
+
+                <p className="mt-4 max-w-xl text-[#777780]">
+                  Educational articles, language guides and practical learning resources.
+                </p>
+              </div>
+
+              <span className="text-sm text-[#92929a]">
+                Learning resources
+              </span>
+            </div>
+
+            <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+              {topics.map((topic, index) => (
+                <article
+                  key={topic.title}
+                  className="group rounded-3xl border border-black/[0.06] bg-[#fbfbfd] p-7 transition hover:-translate-y-1 hover:shadow-xl"
+                >
+                  <div className="flex items-center justify-between gap-3">
+                    <span className="rounded-full bg-violet-50 px-3 py-1.5 text-xs font-medium text-violet-700">
+                      {topic.category}
+                    </span>
+
+                    <span className="text-xs text-[#92929a]">
+                      {topic.level}
+                    </span>
+                  </div>
+
+                  <h3 className="mt-7 text-xl font-semibold leading-8 tracking-tight">
+                    {topic.title}
+                  </h3>
+
+                  <p className="mt-4 text-sm leading-7 text-[#777780]">
+                    {topic.description}
+                  </p>
+
+                  <div className="mt-7 flex items-center justify-between border-t border-black/[0.06] pt-5">
+                    <span className="text-xs text-[#92929a]">
+                      {topic.language}
+                    </span>
+
+                    <span className="text-sm font-medium text-violet-600">
+                      Resource {String(index + 1).padStart(2, "0")}
+                    </span>
+                  </div>
+                </article>
+              ))}
+            </div>
+
+          </div>
+        </section>
+
+        {/* Learning philosophy */}
+        <section className="mx-auto max-w-7xl px-6 py-24">
+
+          <div className="overflow-hidden rounded-[2rem] bg-[#171720] px-8 py-16 text-center text-white sm:px-16">
+
+            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-violet-300">
+              The Bruca approach
+            </p>
+
+            <h2 className="mx-auto mt-6 max-w-3xl text-3xl font-semibold leading-tight tracking-tight sm:text-5xl">
+              Language is not just something you study.
+              <span className="text-violet-300"> It is something you experience.</span>
+            </h2>
+
+            <p className="mx-auto mt-7 max-w-2xl text-sm leading-8 text-white/60 sm:text-base">
+              Explore the structures, expressions and cultural contexts
+              that make every language unique. Learn with curiosity,
+              practise with purpose and communicate with confidence.
+            </p>
+
+            <a
+              href="#languages"
+              className="mt-9 inline-flex rounded-full bg-white px-8 py-4 text-sm font-semibold text-[#171720] transition hover:bg-violet-200"
+            >
+              Find your next language →
+            </a>
+
+          </div>
+        </section>
+
+        {/* Footer */}
+        <footer className="border-t border-black/[0.06] bg-white">
+
+          <div className="mx-auto grid max-w-7xl gap-12 px-6 py-14 md:grid-cols-3">
+
+            <div>
+              <Link href="/" className="text-2xl font-bold tracking-[-0.07em]">
+                Bruca<span className="text-violet-500">.</span>
+              </Link>
+
+              <p className="mt-5 max-w-sm text-sm leading-7 text-[#777780]">
+                A multilingual learning platform for curious minds.
+                Explore languages, understand cultures and discover new ways to communicate.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="font-semibold">Explore</h3>
+
+              <div className="mt-5 flex flex-col gap-3 text-sm text-[#777780]">
+                <a href="#languages" className="hover:text-violet-600">Languages</a>
+                <a href="#skills" className="hover:text-violet-600">Learning Skills</a>
+                <a href="#levels" className="hover:text-violet-600">CEFR Levels</a>
+                <a href="#articles" className="hover:text-violet-600">Articles</a>
+              </div>
+            </div>
+
+            <div>
+              <h3 className="font-semibold">Information</h3>
+
+              <div className="mt-5 flex flex-col gap-3 text-sm text-[#777780]">
+                <Link href="/terms" className="hover:text-violet-600">Terms and Conditions</Link>
+                <Link href="/docs" className="hover:text-violet-600">Documentation</Link>
+              </div>
+            </div>
+
+          </div>
+
+          <div className="border-t border-black/[0.06]">
+            <div className="mx-auto flex max-w-7xl flex-wrap justify-between gap-3 px-6 py-7 text-xs text-[#92929a]">
+              <span>© {new Date().getFullYear()} Bruca. All rights reserved.</span>
+              <span>Learn languages. Explore the world.</span>
+            </div>
+          </div>
+
         </footer>
+
       </div>
     </main>
   );
