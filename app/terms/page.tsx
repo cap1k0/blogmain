@@ -5,7 +5,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "About & Terms of Use | Bruca",
   description:
-    "Discover Bruca, our approach to language learning, educational content, and the terms governing the use of our platform.",
+    "Discover Bruca, an independent language research platform, its research scope and the terms governing use of the website.",
   alternates: { canonical: "/terms" },
 };
 
@@ -28,24 +28,23 @@ export default function TermsPage() {
           </span>
 
           <h1 className="mt-5 text-4xl font-semibold tracking-tight sm:text-5xl">
-            Language opens doors.
-            <span className="text-violet-600"> We help you explore them.</span>
+            Exploring language.
+            <span className="text-violet-600"> Advancing research.</span>
           </h1>
 
           <p className="mt-7 text-lg leading-8 text-neutral-600">
-            Bruca is an independent educational platform built around a
-            simple idea: learning a language should be more than memorising
-            vocabulary and studying grammar rules. It should be an
-            opportunity to discover new perspectives, understand different
-            cultures and communicate with the world.
+            Bruca is an independent language research platform dedicated to exploring
+            the structure, use, acquisition and evolution of human language.
+            We approach language as a cognitive ability, a social practice,
+            a system of communication and an area of technological innovation.
           </p>
 
           <p className="mt-5 leading-8 text-neutral-600">
-            Our goal is to make language-learning resources accessible,
-            informative and engaging for learners everywhere. From English
-            and German to French, Spanish, Arabic, Japanese and beyond,
-            Bruca aims to bring different languages and learning approaches
-            together in one place.
+            Our work brings together applied linguistics, second language acquisition,
+            corpus linguistics, discourse analysis, sociolinguistics,
+            psycholinguistics, language education and computational approaches
+            to language. We publish research notes, project overviews and
+            accessible explanations of linguistic concepts and methods.
           </p>
         </div>
 
@@ -56,55 +55,51 @@ export default function TermsPage() {
           </span>
 
           <h2 className="mt-4 text-2xl font-semibold">
-            Learning without boundaries.
+            Researching language from multiple perspectives.
           </h2>
 
           <p className="mt-5 leading-8 text-neutral-700">
-            We believe language education should be curious, practical and
-            inclusive. Every language carries its own history, expressions,
-            structures and cultural nuances. Our aim is to help learners
-            explore these differences through clear explanations,
-            examples and educational resources.
+            We believe understanding language requires more than studying grammar
+            and vocabulary. It involves investigating communication, cognition,
+            culture, social interaction and technological developments.
+            We aim to make linguistic knowledge and research processes more
+            accessible while being transparent about the evidence and status
+            of each project.
           </p>
         </section>
 
         {/* What we offer */}
         <section className="mb-14">
           <h2 className="mb-6 text-2xl font-semibold tracking-tight">
-            What you can explore
+            Our research scope
           </h2>
 
           <div className="space-y-6">
             <div>
-              <h3 className="font-semibold">Language and grammar</h3>
+              <h3 className="font-semibold">Applied and theoretical linguistics</h3>
               <p className="mt-2 leading-7 text-neutral-600">
-                Explanations of grammar, sentence structures, linguistic
-                patterns and the principles behind how languages work.
+                Explorations of language structure, use, variation and the relationship between linguistic theory and real-world communication.
               </p>
             </div>
 
             <div>
-              <h3 className="font-semibold">Vocabulary and expressions</h3>
+              <h3 className="font-semibold">Language acquisition and education</h3>
               <p className="mt-2 leading-7 text-neutral-600">
-                Words, collocations, idioms and everyday expressions
-                presented in meaningful contexts.
+                Research into how additional languages are learned, taught, assessed and used across educational settings.
               </p>
             </div>
 
             <div>
-              <h3 className="font-semibold">Communication and pronunciation</h3>
+              <h3 className="font-semibold">Discourse, society and cognition</h3>
               <p className="mt-2 leading-7 text-neutral-600">
-                Resources covering speaking, listening, writing,
-                pronunciation and practical communication.
+                Studies of how language constructs meaning in interaction and how social and cognitive factors shape language use.
               </p>
             </div>
 
             <div>
-              <h3 className="font-semibold">Culture and language learning</h3>
+              <h3 className="font-semibold">Corpus and computational approaches</h3>
               <p className="mt-2 leading-7 text-neutral-600">
-                Articles exploring language differences, cultural contexts,
-                learning strategies and the relationship between language
-                and society.
+                Explorations using language data, corpus methods, natural language processing and AI-assisted analysis.
               </p>
             </div>
           </div>
@@ -144,12 +139,14 @@ export default function TermsPage() {
                 2. Educational Purpose
               </h3>
               <p>
-                Bruca provides educational materials, articles, explanations,
-                examples and other language-learning resources. Our content
-                is intended for general educational and informational
-                purposes. It should not be considered a substitute for
-                professional language instruction, accredited qualifications
-                or official examinations.
+                Bruca provides research-oriented articles, project descriptions,
+                methodological notes and educational explanations. Unless
+                explicitly identified otherwise, content is for general
+                informational and educational purposes. A project page does
+                not by itself represent peer-reviewed research, an accredited
+                qualification, professional advice or an official position
+                of a university or research institution. Research status and
+                limitations should be stated on the relevant project page.
               </p>
             </div>
 
@@ -251,7 +248,7 @@ export default function TermsPage() {
               </h3>
               <p>
                 For questions, corrections, suggestions or general
-                enquiries regarding Bruca and its educational
+                enquiries regarding Bruca and its research and educational
                 resources, please use the contact information
                 published on our website.
               </p>
@@ -267,10 +264,10 @@ export default function TermsPage() {
           </h2>
 
           <p className="mt-4 leading-8 text-neutral-600">
-            Whether you are learning your first foreign language,
-            refining your academic writing or exploring the structure
-            of a language you already know, we hope Bruca becomes
-            a useful part of your learning journey.
+            Whether you are a student, educator, researcher or simply curious
+            about language, we hope Bruca offers a useful starting point
+            for exploring linguistic ideas, research methods and emerging
+            language technologies.
           </p>
 
           <Link
