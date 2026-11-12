@@ -68,6 +68,14 @@ export default function HomePage() {
             <Link href="/terms" className="transition hover:text-violet-700">
               Terms
             </Link>
+            <a
+              href="https://blog.bruca.space"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition hover:text-violet-700"
+            >
+              Blog ↗
+            </a>
           </nav>
         </header>
 
